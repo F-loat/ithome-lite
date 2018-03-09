@@ -1,7 +1,10 @@
 <template lang="pug">
 .container
   swiper.slider-wrap(autoplay, indicator-dots, circular)
-    swiper-item(v-for="(slide, index) of slides", :key="index")
+    swiper-item(
+      v-for="(slide, index) of slides",
+      v-if="slide.opentype == 1",
+      :key="index")
       a.slider-item(:href="slide.link")
         text.slider-title {{slide.title}}
         img.slider-img(:src="slide.image", mode="aspectFill")
@@ -37,7 +40,10 @@ export default {
   },
   created () {
     this.getSlides()
-    this.getNewslist()
+    this.getNewslist(null, true)
+  },
+  onPullDownRefresh () {
+    this.getNewslist(null, true)
   },
   onReachBottom () {
     if (this.loading) return
@@ -59,7 +65,7 @@ export default {
         }
       })
     },
-    async getNewslist(r = Date.now()) {
+    async getNewslist(r = Date.now(), init) {
       this.loading = true
       wx.showLoading({ title: '加载中' })
       const news = await api.getNewslist(r)
@@ -71,8 +77,13 @@ export default {
         news.postdate = formatTime(news.postdate)
         news.link = `/pages/ndetail/ndetail?id=${news.newsid}&title=${news.title}`
       })
-      this.news.toplist = this.news.toplist.concat(news.toplist)
-      this.news.newslist = this.news.newslist.concat(news.newslist)
+      if (init) {
+        this.news = news
+        wx.stopPullDownRefresh()
+      } else {
+        this.news.toplist = this.news.toplist.concat(news.toplist)
+        this.news.newslist = this.news.newslist.concat(news.newslist)
+      }
       wx.hideLoading()
       this.loading = false
     }
