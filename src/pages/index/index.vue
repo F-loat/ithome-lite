@@ -9,25 +9,22 @@
         text.slider-title {{slide.title}}
         img.slider-img(:src="slide.image", mode="aspectFill")
   .news-wrap
-    a.news-item(
-      :href="news.link",
+    news-item(
       v-for="news of news.newslist",
-      :key="news.newsid",
-      v-if="!news.lapinid")
-      img.news-img(:src="news.image", mode="aspectFill")
-      .news-text
-        .news-title {{news.title}}
-        .news-info
-          text {{news.postdate}}
-          text {{news.commentcount}}评
+      :news="news"
+      :key="news.newsid")
 </template>
 
 <script>
 import xml2json from 'xmlstring2json'
 import api from '@/utils/api'
 import { formatTime } from '@/utils'
+import newsItem from '@/components/news-item'
 
 export default {
+  components: {
+    newsItem
+  },
   data () {
     return {
       loading: false,
@@ -52,7 +49,7 @@ export default {
     this.getNewslist(Date.parse(new Date(lastnews.postdate)))
   },
   methods: {
-    async getSlides() {
+    async getSlides () {
       const slides = await api.getSlides()
       this.slides = xml2json(slides).rss.channel.item.map(slide => {
         return {
@@ -61,11 +58,11 @@ export default {
           device: slide.device['#text'],
           opentype: slide.opentype['#text'],
           newstype: slide.newstype['#text'],
-          link: `/pages/ndetail/ndetail?id=${slide.link['#text']}&title=${slide.title['#text']}`,
+          link: `/pages/ndetail/ndetail?id=${slide.link['#text']}&title=${slide.title['#text']}`
         }
       })
     },
-    async getNewslist(r = Date.now(), init) {
+    async getNewslist (r = Date.now(), init) {
       this.loading = true
       wx.showLoading({ title: '加载中' })
       const news = await api.getNewslist(r)
@@ -91,7 +88,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .slider-wrap {
   width: 375px;
   height: 200px;
@@ -118,32 +115,5 @@ export default {
 
 .news-wrap {
   padding: 0 10px;
-}
-.news-item {
-  display: flex;
-  height: 90px;
-  align-items: center;
-  border-bottom: 1px solid #eee;
-}
-.news-img {
-  width: 100px;
-  height: 75px;
-  margin-right: 10px;
-}
-.news-text {
-  flex: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.news-title {
-  font-size: 15px;
-}
-.news-info {
-  color: #aaa;
-  font-size: 12px;
-  display: flex;
-  justify-content: space-between;
 }
 </style>

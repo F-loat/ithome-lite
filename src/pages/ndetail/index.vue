@@ -6,24 +6,21 @@
   rich-text.news-content(:nodes="news.detail")
   h2.related-title(v-if="relatedNews.length") 相关文章
   .news-wrap
-    a.news-item(
-      :href="news.link",
+    news-item(
       v-for="news of relatedNews",
-      :key="news.newsid",
-      v-if="!news.lapinid")
-      img.news-img(:src="news.image", mode="aspectFill")
-      .news-text
-        .news-title {{news.title}}
-        .news-info
-          text {{news.postdate}}
-          text(v-if="news.commentcount") {{news.commentcount}}评
+      :news="news"
+      :key="news.newsid")
 </template>
 
 <script>
 import xml2json from 'xmlstring2json'
 import api from '@/utils/api'
+import newsItem from '@/components/news-item'
 
 export default {
+  components: {
+    newsItem
+  },
   data () {
     return {
       show: false,
@@ -40,7 +37,7 @@ export default {
     this.getRelatedNews()
   },
   onUnload () {
-    this.show = false;
+    this.show = false
   },
   methods: {
     async getNews () {
@@ -53,7 +50,7 @@ export default {
         detail: parsedNews.detail['#text'].replace(/<img/g, '<img width="100%"'),
         newsauthor: parsedNews.newsauthor['#text']
       }
-      this.show = true;
+      this.show = true
     },
     async getRelatedNews () {
       const newslist = await api.getRelatedNews(this.id)
@@ -82,7 +79,7 @@ export default {
   box-sizing: border-box;
 }
 .news-title {
-  font-size: 20px;
+  font-size: 22px;
 }
 .auth-info {
   font-size: 12px;
@@ -109,32 +106,5 @@ export default {
   width: 100%;
   box-sizing: border-box;
   padding: 0 10px;
-}
-.news-item {
-  display: flex;
-  height: 90px;
-  align-items: center;
-  border-bottom: 1px solid #eee;
-}
-.news-img {
-  width: 100px;
-  height: 75px;
-  margin-right: 10px;
-}
-.news-text {
-  flex: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.news-title {
-  font-size: 15px;
-}
-.news-info {
-  color: #aaa;
-  font-size: 12px;
-  display: flex;
-  justify-content: space-between;
 }
 </style>
