@@ -71,7 +71,7 @@ var webpackConfig = merge(baseWebpackConfig, {
           module.resource &&
           /\.js$/.test(module.resource) &&
           module.resource.indexOf('node_modules') >= 0
-        ) || count >= 2
+        )
       }
     }),
     // extract webpack runtime and module manifest to its own file in order to
