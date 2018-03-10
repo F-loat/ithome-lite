@@ -60,6 +60,9 @@ export default {
       const comments = this.topic.reply
       const lastComment = comments[comments.length - 1]
       const newComments = await api.getTopicComments(query.id, lastComment.M.Ci)
+      newComments.forEach(comment => {
+        comment.M.C = comment.M.C.replace(/<img/g, '<img width="100%"')
+      })
       this.topic.reply = this.topic.reply.concat(newComments)
       wx.hideNavigationBarLoading()
       this.loading = false
