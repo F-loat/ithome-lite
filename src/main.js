@@ -10,9 +10,13 @@ app.$mount()
 export default {
   // 这个字段走 app.json
   config: {
-    pages: [], // Will be filled in webpack
+    pages: [
+      'pages/news/news'
+    ], // Will be filled in webpack
     window: {
       backgroundTextStyle: 'light',
+      backgroundColor: '#d22222',
+      backgroundColorTop: '#d22222',
       navigationBarBackgroundColor: '#d22222',
       navigationBarTitleText: 'IT之家Lite',
       navigationBarTextStyle: 'white'
@@ -23,7 +27,7 @@ export default {
       backgroundColor: '#fff',
       borderStyle: 'black',
       list: [{
-        pagePath: 'pages/index/index',
+        pagePath: 'pages/news/news',
         text: '资讯',
         iconPath: 'static/assets/news.png',
         selectedIconPath: 'static/assets/news-active.png'

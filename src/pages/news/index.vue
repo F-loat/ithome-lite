@@ -35,7 +35,7 @@ export default {
       }
     }
   },
-  created () {
+  mounted () {
     this.getSlides()
     this.getNewslist(null, true)
   },
@@ -64,7 +64,7 @@ export default {
     },
     async getNewslist (r = Date.now(), init) {
       this.loading = true
-      wx.showLoading({ title: '加载中' })
+      wx.showNavigationBarLoading()
       const news = await api.getNewslist(r)
       news.toplist.forEach((news) => {
         news.postdate = formatTime(news.postdate)
@@ -81,7 +81,7 @@ export default {
         this.news.toplist = this.news.toplist.concat(news.toplist)
         this.news.newslist = this.news.newslist.concat(news.newslist)
       }
-      wx.hideLoading()
+      wx.hideNavigationBarLoading()
       this.loading = false
     }
   }
