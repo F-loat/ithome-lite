@@ -2,6 +2,9 @@
 
 > IT之家小程序版客户端
 
+## 扫码体验
+![小程序码](./static/qrcode.jpg)
+
 ## 部分 api 列表
 
 * 新闻列表 http://api.ithome.com/json/newslist/news?r=0
