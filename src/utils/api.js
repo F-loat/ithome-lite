@@ -4,6 +4,7 @@ const api = {
   getNewslist: (r) => request(`https://api.ithome.com/json/newslist/news?r=${r}`),
   getNews: (id) => request(`https://api.ithome.com/xml/newscontent/${id}.xml`),
   getRelatedNews: (id) => request(`https://api.ithome.com/json/tags/0350/${id}.json`),
+  getNewsComments: (id) => request(`https://dyn.ithome.com/json/commentlist/350/87a8e5b144d81938.json`),
   getSlides: () => request('https://api.ithome.com/xml/slide/slide.xml'),
   getTopics: (r) => request(`https://apiquan.ithome.com/api/post?categoryid=0&type=0&orderTime=${r}&visistCount&pageLength`),
   getTopic: (id) => request(`https://apiquan.ithome.com/api/post/${id}`),

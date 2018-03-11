@@ -10,6 +10,8 @@
       v-for="news of relatedNews",
       :news="news"
       :key="news.newsid")
+  a.comment-btn(:href="commentHref")
+    img.comment-icon(src="/static/assets/comment.png")
 </template>
 
 <script>
@@ -28,6 +30,11 @@ export default {
       title: '',
       news: {},
       relatedNews: []
+    }
+  },
+  computed: {
+    commentHref () {
+      return `/pages/ncomment/ncomment?id=${this.id}`
     }
   },
   mounted () {
@@ -108,5 +115,22 @@ export default {
   width: 100%;
   box-sizing: border-box;
   padding: 0 10px;
+}
+
+.comment-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #d22222;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comment-icon {
+  width: 40px;
+  height: 40px;
 }
 </style>
