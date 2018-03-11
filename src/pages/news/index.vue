@@ -37,10 +37,10 @@ export default {
   },
   mounted () {
     this.getSlides()
-    this.getNewslist(null, true)
+    this.getNewslist(2, true)
   },
   onPullDownRefresh () {
-    this.getNewslist(null, true)
+    this.getNewslist(2, true)
   },
   onReachBottom () {
     if (this.loading) return

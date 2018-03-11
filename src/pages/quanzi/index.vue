@@ -63,13 +63,13 @@ export default {
   border-bottom: 1px solid #eee;
 }
 .topic-title {
-  font-size: 18px;
+  font-size: 16px;
 }
 .topic-info {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .topic-info-item {
   margin-left: 10px;

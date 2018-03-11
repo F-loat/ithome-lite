@@ -74,8 +74,7 @@ export default {
 <style scoped>
 .topic-title {
   width: 100%;
-  padding-top: 10px;
-  padding-left: 10px;
+  padding: 10px;
   box-sizing: border-box;
   font-size: 22px;
 }
@@ -89,7 +88,7 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 10px;
+  padding: 0 10px 10px;
   box-sizing: border-box;
   border-bottom: 1px solid #eee;
 }
@@ -114,8 +113,13 @@ export default {
   min-height: 100px;
 }
 
+.comment-wrap {
+  width: 100%;
+}
 .comment-item {
+  width: 100%;
   padding: 10px;
+  box-sizing: border-box;
   border-bottom: 1px dashed #eee;
 }
 .comment-item:last-child {
