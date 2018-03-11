@@ -11,18 +11,21 @@
       span.topic-info-text {{topic.rc}}
   rich-text.topic-content(:nodes="topic.content")
   .comment-wrap
-    .comment-item(v-for="comment of topic.reply", :key="comment.F")
-      .comment-header
-        .comment-author {{comment.M.N}}
-        .comment-phone {{comment.M.Ta}}
-        .comment-num {{comment.F}}楼
-      rich-text.comment-content(:nodes="comment.M.C")
+    comment-item(
+      v-for="comment of topic.reply",
+      :key="comment.id",
+      :comment="comment")
 </template>
 
 <script>
 import api from '@/utils/api'
+import commentItem from '@/components/comment-item'
+import { formatComment } from '@/utils'
 
 export default {
+  components: {
+    commentItem
+  },
   data () {
     return {
       show: false,
@@ -45,9 +48,7 @@ export default {
       const { query } = this.$root.$mp
       const topic = await api.getTopic(query.id)
       topic.content = topic.content.replace('!--IMG_1--', `img src="${topic.imgs[0]}" width="100%" /`)
-      topic.reply.forEach(comment => {
-        comment.M.C = comment.M.C.replace(/<img/g, '<img width="100%"')
-      })
+      topic.reply = topic.reply.map(formatComment)
       this.topic = Object.assign({}, query, topic)
       wx.hideNavigationBarLoading()
       this.show = true
@@ -60,10 +61,8 @@ export default {
       const comments = this.topic.reply
       const lastComment = comments[comments.length - 1]
       const newComments = await api.getTopicComments(query.id, lastComment.M.Ci)
-      newComments.forEach(comment => {
-        comment.M.C = comment.M.C.replace(/<img/g, '<img width="100%"')
-      })
-      this.topic.reply = this.topic.reply.concat(newComments)
+      const formatedComments = newComments.map(formatComment)
+      this.topic.reply = this.topic.reply.concat(formatedComments)
       wx.hideNavigationBarLoading()
       this.loading = false
     }
@@ -115,35 +114,5 @@ export default {
 
 .comment-wrap {
   width: 100%;
-}
-.comment-item {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 1px dashed #eee;
-}
-.comment-item:last-child {
-  border: none;
-}
-.comment-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 8px;
-  font-size: 15px;
-}
-.comment-author {
-  color: #4769b0;
-  margin-right: 5px;
-}
-.comment-num {
-  font-size: 12px;
-  flex: 1;
-  text-align: right;
-}
-.comment-content {
-  line-height: 1.6;
-  font-size: 16px;
 }
 </style>

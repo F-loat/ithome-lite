@@ -19,3 +19,12 @@ export function formatTime (date) {
   return `${t1} ${t2}`
 }
 
+export function formatComment (comment) {
+  return {
+    id: comment.M.Ui,
+    author: comment.M.N,
+    phone: comment.M.Ta,
+    floor: comment.M.SF || `${comment.F}楼`,
+    content: comment.M.C.replace(/<img/g, '<img width="100%"')
+  }
+}
