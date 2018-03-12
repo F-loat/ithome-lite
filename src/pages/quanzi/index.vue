@@ -57,7 +57,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
 .topic-item {
   padding: 10px;
   border-bottom: 1px solid #eee;
@@ -81,5 +81,6 @@ export default {
 .topic-info-icon {
   width: 15px;
   height: 15px;
+  margin-right: 4px;
 }
 </style>

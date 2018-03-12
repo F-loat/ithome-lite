@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
 .topic-title {
   width: 100%;
   padding: 10px;
@@ -101,6 +101,7 @@ export default {
 .topic-info-icon {
   width: 15px;
   height: 15px;
+  margin-right: 4px;
 }
 .topic-content {
   width: 100%;

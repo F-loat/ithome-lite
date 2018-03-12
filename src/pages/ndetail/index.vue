@@ -77,13 +77,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
+@import url("~@/styles/index.less");
+
 .header {
   display: flex;
   flex-direction: column;
   width: 100%;
   color: #fff;
-  background-color: #d22222;
+  background-color: @primary-color;
   padding: 10px;
   box-sizing: border-box;
 }
@@ -107,7 +109,7 @@ export default {
   font-size: 18px;
   font-weight: 600;
   align-self: flex-start;
-  border-left: 4px solid #d22222;
+  border-left: 4px solid @primary-color;
   padding: 2px 5px;
 }
 
@@ -121,7 +123,7 @@ export default {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  background-color: #d22222;
+  background-color: @primary-color;
   position: fixed;
   right: 20px;
   bottom: 20px;

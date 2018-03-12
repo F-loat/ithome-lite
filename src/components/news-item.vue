@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .news-item {
   display: flex;
   height: 90px;
