@@ -2,9 +2,8 @@
 .container
   swiper.slider-wrap(autoplay, indicator-dots, circular)
     swiper-item(
-      v-for="(slide, index) of slides",
-      v-if="slide.opentype == 1",
-      :key="index")
+      v-for="slide of slides",
+      :key="slide.link")
       a.slider-item(:href="slide.link")
         text.slider-title {{slide.title}}
         img.slider-img(:src="slide.image", mode="aspectFill")
@@ -51,16 +50,16 @@ export default {
   methods: {
     async getSlides () {
       const slides = await api.getSlides()
-      this.slides = xml2json(slides).rss.channel.item.map(slide => {
+      const parsedSlides = xml2json(slides).rss.channel.item
+      const filtedSlides = parsedSlides.filter(slide => slide.opentype['#text'] === '1')
+      const formatedSlides = filtedSlides.map(slide => {
         return {
           title: slide.title['#text'],
           image: slide.image['#text'],
-          device: slide.device['#text'],
-          opentype: slide.opentype['#text'],
-          newstype: slide.newstype['#text'],
           link: `/pages/ndetail/ndetail?id=${slide.link['#text']}&title=${slide.title['#text']}`
         }
       })
+      this.slides = formatedSlides
     },
     async getNewslist (r = Date.now(), init) {
       this.loading = true
