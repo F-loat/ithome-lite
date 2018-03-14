@@ -2,8 +2,8 @@
 
 > IT之家小程序版客户端
 
-## 扫码体验
-![小程序码](./static/qrcode.jpg)
+## 扫码体验 ([#2](https://github.com/F-loat/ithome-lite/issues/2))
+![小程序码](./static/qrcode_beta.jpg)
 
 ## 部分 api 列表
 
