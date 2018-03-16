@@ -8,35 +8,28 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-function getEntry (dir, entryFile) {
-  const files = fs.readdirSync(dir)
-  return files.reduce((res, k) => {
-    const page = path.resolve(dir, k, entryFile)
-    if (fs.existsSync(page)) {
-      res[k] = page
-    }
-    return res
-  }, {})
-}
-
-const appEntry = { app: resolve('./src/main.js') }
-const pagesEntry = getEntry(resolve('./src/pages'), 'main.js')
-const entry = Object.assign({}, appEntry, pagesEntry)
-
 module.exports = {
-  entry: entry,
+  entry: {
+    app: resolve('./src/main.js'), // app 字段被识别为 app 类型
+    'pages/news/list': resolve('./src/pages/news/list/main.js'),
+    'pages/news/detail': resolve('./src/pages/news/detail/main.js'),
+    'pages/news/comment': resolve('./src/pages/news/comment/main.js'),
+    'pages/quanzi/list': resolve('./src/pages/quanzi/list/main.js'),
+    'pages/quanzi/detail': resolve('./src/pages/quanzi/detail/main.js')
+  },
   target: require('mpvue-webpack-target'),
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    publicPath:
+      process.env.NODE_ENV === 'production'
+        ? config.build.assetsPublicPath
+        : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue': 'mpvue',
+      vue: 'mpvue',
       '@': resolve('src')
     },
     symlinks: false
@@ -67,7 +60,7 @@ module.exports = {
             options: {
               checkMPEntry: true
             }
-          },
+          }
         ]
       },
       {
@@ -96,4 +89,4 @@ module.exports = {
       }
     ]
   }
-}
+};
