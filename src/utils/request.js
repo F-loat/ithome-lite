@@ -1,10 +1,14 @@
-const request = (url, method = 'GET') => new Promise((resolve, reject) => {
-  wx.request({
-    url,
-    method,
-    success: res => resolve(res.data),
-    fail: res => reject(res)
-  })
-})
+import Fly from 'flyio'
+
+const request = new Fly()
+
+request.interceptors.response.use(
+  (response, promise) => {
+    return response.data
+  },
+  (err, promise) => {
+    console.log(err)
+  }
+)
 
 export default request
