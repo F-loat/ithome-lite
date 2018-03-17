@@ -67,11 +67,11 @@ export default {
       const news = await api.getNewslist(r)
       news.toplist.forEach((news) => {
         news.postdate = formatTime(news.postdate)
-        news.link = `/pages/ndetail/ndetail?id=${news.newsid}&title=${news.title}`
+        news.link = `/pages/news/detail?id=${news.newsid}&title=${news.title}`
       })
       news.newslist.forEach((news) => {
         news.postdate = formatTime(news.postdate)
-        news.link = `/pages/ndetail/ndetail?id=${news.newsid}&title=${news.title}`
+        news.link = `/pages/news/detail?id=${news.newsid}&title=${news.title}`
       })
       if (init) {
         this.news = news

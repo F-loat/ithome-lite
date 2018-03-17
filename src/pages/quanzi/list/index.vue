@@ -47,7 +47,7 @@ export default {
       const newTopics = await api.getTopics(rt)
       newTopics.forEach(topic => {
         const { id, c, t, un, vc } = topic
-        topic.link = `/pages/qdetail/qdetail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`
+        topic.link = `/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`
       })
       this.topics = this.topics.concat(newTopics)
       wx.hideNavigationBarLoading()

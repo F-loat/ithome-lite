@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     commentHref () {
-      return `/pages/ncomment/ncomment?id=${this.id}`
+      return `/pages/news/comment?id=${this.id}`
     }
   },
   mounted () {
@@ -68,7 +68,7 @@ export default {
         return {
           title: news.newstitle,
           image: news.img,
-          link: `/pages/ndetail/ndetail?id=${news.newsid}&title=${news.newstitle}`,
+          link: `/pages/news/detail?id=${news.newsid}&title=${news.newstitle}`,
           postdate: news.postdate
         }
       })
