@@ -9,80 +9,45 @@
         img.slider-img(:src="slide.image", mode="aspectFill")
   .news-wrap
     news-item(
-      v-for="news of news.newslist",
-      :news="news"
-      :key="news.newsid")
+      v-for="item of news",
+      :news="item"
+      :key="item.newsid")
 </template>
 
 <script>
-import xml2json from 'xmlstring2json'
-import api from '@/utils/api'
-import { formatTime } from '@/utils'
+import { mapState, mapActions } from 'vuex'
 import newsItem from '@/components/news-item'
 
 export default {
   components: {
     newsItem
   },
-  data () {
-    return {
-      loading: false,
-      slides: [],
-      news: {
-        toplist: [],
-        newslist: []
-      }
-    }
+  computed: {
+    ...mapState([
+      'slides',
+      'news'
+    ])
   },
   mounted () {
-    this.getSlides()
-    this.getNewslist(2, true)
+    wx.startPullDownRefresh()
   },
-  onPullDownRefresh () {
-    this.getNewslist(2, true)
+  async onPullDownRefresh () {
+    await Promise.all([
+      this.getNews(2, true),
+      this.getSlides()
+    ])
+    wx.stopPullDownRefresh()
   },
   onReachBottom () {
-    if (this.loading) return
-    const { newslist } = this.news
-    const lastnews = newslist[newslist.length - 1]
-    this.getNewslist(Date.parse(new Date(lastnews.postdate)))
+    const { news } = this
+    const lastnews = news[news.length - 1]
+    this.getNews(Date.parse(new Date(lastnews.postdate)))
   },
   methods: {
-    async getSlides () {
-      const slides = await api.getSlides()
-      const parsedSlides = xml2json(slides).rss.channel.item
-      const filtedSlides = parsedSlides.filter(slide => slide.opentype['#text'] === '1')
-      const formatedSlides = filtedSlides.map(slide => {
-        return {
-          title: slide.title['#text'],
-          image: slide.image['#text'],
-          link: `/pages/ndetail/ndetail?id=${slide.link['#text']}&title=${slide.title['#text']}`
-        }
-      })
-      this.slides = formatedSlides
-    },
-    async getNewslist (r = Date.now(), init) {
-      this.loading = true
-      wx.showNavigationBarLoading()
-      const news = await api.getNewslist(r)
-      news.toplist.forEach((news) => {
-        news.postdate = formatTime(news.postdate)
-        news.link = `/pages/news/detail?id=${news.newsid}&title=${news.title}`
-      })
-      news.newslist.forEach((news) => {
-        news.postdate = formatTime(news.postdate)
-        news.link = `/pages/news/detail?id=${news.newsid}&title=${news.title}`
-      })
-      if (init) {
-        this.news = news
-        wx.stopPullDownRefresh()
-      } else {
-        this.news.toplist = this.news.toplist.concat(news.toplist)
-        this.news.newslist = this.news.newslist.concat(news.newslist)
-      }
-      wx.hideNavigationBarLoading()
-      this.loading = false
-    }
+    ...mapActions([
+      'getSlides',
+      'getNews'
+    ])
   }
 }
 </script>

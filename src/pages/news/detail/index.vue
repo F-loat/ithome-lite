@@ -48,7 +48,6 @@ export default {
   },
   methods: {
     async getNews () {
-      wx.showNavigationBarLoading()
       let { id } = this
       id = `${id.slice(0, 3)}/${id.slice(3, 6)}`
       const news = await api.getNews(id)
@@ -58,7 +57,6 @@ export default {
         detail: parsedNews.detail['#text'].replace(/<img/g, '<img width="100%"'),
         newsauthor: parsedNews.newsauthor['#text']
       }
-      wx.hideNavigationBarLoading()
       this.show = true
     },
     async getRelatedNews () {

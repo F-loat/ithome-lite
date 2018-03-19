@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     async getComments () {
-      wx.showNavigationBarLoading()
       let { id } = this
       const comments = await api.getNewsComments(id)
       const parsedComments = JSON.parse(comments.match(/showcomment\((.*)\)/)[1])
@@ -41,7 +40,6 @@ export default {
         comment.M.N = unescape(comment.M.N)
         return formatComment(comment)
       })
-      wx.hideNavigationBarLoading()
       this.show = true
     }
   }

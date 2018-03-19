@@ -18,41 +18,28 @@
 </template>
 
 <script>
-import api from '@/utils/api'
+import { mapState, mapActions } from 'vuex'
 
 export default {
-  data () {
-    return {
-      loading: false,
-      topics: []
-    }
+  computed: {
+    ...mapState([
+      'topics'
+    ])
   },
   mounted () {
-    this.getTopics()
+    wx.startPullDownRefresh()
+  },
+  async onPullDownRefresh () {
+    await this.getTopics(true)
+    wx.stopPullDownRefresh()
   },
   onReachBottom () {
     this.getTopics()
   },
   methods: {
-    async getTopics () {
-      if (this.loading) return
-      this.loading = true
-      wx.showNavigationBarLoading()
-      const { topics } = this
-      let rt = Date.now()
-      if (topics.length) {
-        const lastTopic = topics[topics.length - 1]
-        rt = lastTopic.rt.replace(/[^0-9]/ig, '')
-      }
-      const newTopics = await api.getTopics(rt)
-      newTopics.forEach(topic => {
-        const { id, c, t, un, vc } = topic
-        topic.link = `/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`
-      })
-      this.topics = this.topics.concat(newTopics)
-      wx.hideNavigationBarLoading()
-      this.loading = false
-    }
+    ...mapActions([
+      'getTopics'
+    ])
   }
 }
 </script>

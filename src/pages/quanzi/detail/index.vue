@@ -44,26 +44,22 @@ export default {
   },
   methods: {
     async getTopic () {
-      wx.showNavigationBarLoading()
       const { query } = this.$root.$mp
       const topic = await api.getTopic(query.id)
       topic.content = topic.content.replace('!--IMG_1--', `img src="${topic.imgs[0]}" width="100%" /`)
       topic.reply = topic.reply.map(formatComment)
       this.topic = Object.assign({}, query, topic)
-      wx.hideNavigationBarLoading()
       this.show = true
     },
     async getComments () {
       if (this.loading) return
       this.loading = true
-      wx.showNavigationBarLoading()
       const { query } = this.$root.$mp
       const comments = this.topic.reply
       const lastComment = comments[comments.length - 1]
       const newComments = await api.getTopicComments(query.id, lastComment.M.Ci)
       const formatedComments = newComments.map(formatComment)
       this.topic.reply = this.topic.reply.concat(formatedComments)
-      wx.hideNavigationBarLoading()
       this.loading = false
     }
   }

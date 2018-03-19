@@ -19,6 +19,16 @@ export function formatTime (date) {
   return `${t1} ${t2}`
 }
 
+export function formatSlideList (slide) {
+  return {
+    title: slide.title['#text'],
+    image: slide.image['#text'],
+    link: `/pages/news/detail?id=${slide.link['#text']}&title=${
+      slide.title['#text']
+    }`
+  }
+}
+
 export function formatComment (comment) {
   return {
     id: comment.M.Ui,
