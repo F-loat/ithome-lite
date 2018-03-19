@@ -3,20 +3,22 @@ var fs = require('fs')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var pages = require('./pages')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+var entry = {
+  app: resolve('./src/main.js')
+}
+
+pages.forEach(page => {
+  entry[page] = resolve(`./src/${page}/main.js`)
+})
+
 module.exports = {
-  entry: {
-    app: resolve('./src/main.js'), // app 字段被识别为 app 类型
-    'pages/news/list': resolve('./src/pages/news/list/main.js'),
-    'pages/news/detail': resolve('./src/pages/news/detail/main.js'),
-    'pages/news/comment': resolve('./src/pages/news/comment/main.js'),
-    'pages/quanzi/list': resolve('./src/pages/quanzi/list/main.js'),
-    'pages/quanzi/detail': resolve('./src/pages/quanzi/detail/main.js')
-  },
+  entry,
   target: require('mpvue-webpack-target'),
   output: {
     path: config.build.assetsRoot,
