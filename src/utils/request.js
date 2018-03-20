@@ -10,11 +10,15 @@ request.interceptors.request.use((request) => {
 request.interceptors.response.use(
   (response, promise) => {
     wx.hideNavigationBarLoading()
-    return response.data
+    return promise.resolve(response.data)
   },
   (err, promise) => {
     wx.hideNavigationBarLoading()
-    console.log(err)
+    wx.showToast({
+      title: err.message,
+      icon: 'none'
+    })
+    return promise.resolve()
   }
 )
 

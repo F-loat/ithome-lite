@@ -51,6 +51,7 @@ export default {
       let { id } = this
       id = `${id.slice(0, 3)}/${id.slice(3, 6)}`
       const news = await api.getNews(id)
+      if (!news) return
       const parsedNews = xml2json(news).rss.channel.item
       this.news = {
         newssource: parsedNews.newssource['#text'],
@@ -61,6 +62,7 @@ export default {
     },
     async getRelatedNews () {
       const newslist = await api.getRelatedNews(this.id)
+      if (!newslist) return
       const parsedNews = JSON.parse(newslist.replace('var tag_jsonp =', ''))
       this.relatedNews = parsedNews.map(news => {
         return {

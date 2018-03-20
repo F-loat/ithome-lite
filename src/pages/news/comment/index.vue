@@ -34,6 +34,7 @@ export default {
     async getComments () {
       let { id } = this
       const comments = await api.getNewsComments(id)
+      if (!comments) return
       const parsedComments = JSON.parse(comments.match(/showcomment\((.*)\)/)[1])
       this.comments = parsedComments.map(comment => {
         comment.M.C = unescape(comment.M.C)

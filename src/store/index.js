@@ -26,6 +26,7 @@ const store = new Vuex.Store({
   actions: {
     async getSlides ({ commit }) {
       const slides = await api.getSlides()
+      if (!slides) return
       const parsedSlides = xml2json(slides).rss.channel.item
       const filtedSlides = parsedSlides.filter(
         slide => slide.opentype['#text'] === '1'
@@ -35,6 +36,7 @@ const store = new Vuex.Store({
     },
     async getNews ({ state, commit }, r = Date.now(), init) {
       const news = await api.getNewslist(r)
+      if (!news) return
       news.newslist.forEach((news) => {
         news.postdate = formatTime(news.postdate)
         news.link = `/pages/news/detail?id=${news.newsid}&title=${news.title}`
@@ -52,6 +54,7 @@ const store = new Vuex.Store({
         rt = lastTopic.rt.replace(/[^0-9]/ig, '')
       }
       const topics = await api.getTopics(rt)
+      if (!topics) return
       topics.forEach(topic => {
         const { id, c, t, un, vc } = topic
         topic.link = `/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`

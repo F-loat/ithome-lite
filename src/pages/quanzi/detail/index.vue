@@ -46,6 +46,7 @@ export default {
     async getTopic () {
       const { query } = this.$root.$mp
       const topic = await api.getTopic(query.id)
+      if (!topic) return
       topic.content = topic.content.replace('!--IMG_1--', `img src="${topic.imgs[0]}" width="100%" /`)
       topic.reply = topic.reply.map(formatComment)
       this.topic = Object.assign({}, query, topic)
@@ -58,6 +59,7 @@ export default {
       const comments = this.topic.reply
       const lastComment = comments[comments.length - 1]
       const newComments = await api.getTopicComments(query.id, lastComment.M.Ci)
+      if (!newComments) return
       const formatedComments = newComments.map(formatComment)
       this.topic.reply = this.topic.reply.concat(formatedComments)
       this.loading = false
