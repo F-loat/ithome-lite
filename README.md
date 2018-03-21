@@ -5,6 +5,13 @@
 ## 扫码体验 ([#2](https://github.com/F-loat/ithome-lite/issues/2))
 ![小程序码](./static/qrcode_beta.jpg)
 
+## 截图展示
+<p>
+  <img alt="新闻列表" src="./screenshots/news.jpg" width="33%" />
+  <img alt="新闻详情" src="./screenshots/detail.jpg" width="33%" />
+  <img alt="圈子列表" src="./screenshots/quanzi.jpg" width="33%" />
+</p>
+
 ## 部分 api 列表
 
 * 新闻列表 https://api.ithome.com/json/newslist/news?r=0
