@@ -64,6 +64,7 @@ export default {
   height: 100%;
 }
 .slider-title {
+  max-width: 90vw;
   position: absolute;
   top: 10px;
   right: 0;
