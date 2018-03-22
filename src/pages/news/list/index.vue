@@ -5,7 +5,7 @@
       v-for="slide of slides",
       :key="slide.link")
       a.slider-item(:href="slide.link")
-        text.slider-title {{slide.title}}
+        .slider-title {{slide.title}}
         img.slider-img(:src="slide.image", mode="aspectFill")
   .news-wrap
     news-item(
