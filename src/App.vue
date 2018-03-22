@@ -37,6 +37,10 @@ a {
   text-decoration: none;
 }
 
+img {
+  object-fit: cover;
+}
+
 .nav {
   position: fixed;
   bottom: 0;
