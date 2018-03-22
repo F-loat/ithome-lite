@@ -30,32 +30,38 @@ export default {
     ])
   },
   mounted () {
-    wx.startPullDownRefresh()
+    this.refresh()
   },
-  async onPullDownRefresh () {
-    await Promise.all([
-      this.getNews({ r: 2, init: true }),
-      this.getSlides()
-    ])
-    wx.stopPullDownRefresh()
+  onPullDownRefresh () {
+    this.refresh()
   },
   onReachBottom () {
-    const { news } = this
-    const lastnews = news[news.length - 1]
-    this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
+    this.loadmore()
   },
   methods: {
     ...mapActions([
       'getSlides',
       'getNews'
-    ])
+    ]),
+    async refresh () {
+      await Promise.all([
+        this.getNews({ r: 2, init: true }),
+        this.getSlides()
+      ])
+      wx.stopPullDownRefresh()
+    },
+    loadmore () {
+      const { news } = this
+      const lastnews = news[news.length - 1]
+      this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
+    }
   }
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .slider-wrap {
-  width: 375px;
+  width: 100%;
   height: 200px;
 }
 .slider-item {
