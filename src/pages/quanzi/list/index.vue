@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
 
 export default {

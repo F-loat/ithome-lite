@@ -31,9 +31,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
+      '@': resolve('src'),
       vue: 'mpvue',
       flyio: 'flyio/dist/npm/wx',
-      '@': resolve('src')
+      wx: resolve('src/utils/wx')
     },
     symlinks: false
   },

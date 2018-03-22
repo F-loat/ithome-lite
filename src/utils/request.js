@@ -1,3 +1,4 @@
+import wx from 'wx'
 import Fly from 'flyio'
 
 const request = new Fly()
