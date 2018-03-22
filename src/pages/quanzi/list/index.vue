@@ -28,18 +28,24 @@ export default {
     ])
   },
   mounted () {
-    this.onPullDownRefresh()
+    this.refresh()
+  },
+  onPullDownRefresh () {
+    this.refresh()
   },
   onReachBottom () {
-    this.getTopics()
+    this.loadmore()
   },
   methods: {
     ...mapActions([
       'getTopics'
     ]),
-    async onPullDownRefresh () {
+    async refresh () {
       await this.getTopics(true)
       wx.stopPullDownRefresh()
+    },
+    loadmore () {
+      this.getTopics()
     }
   }
 }

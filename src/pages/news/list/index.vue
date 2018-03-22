@@ -33,24 +33,30 @@ export default {
     ])
   },
   mounted () {
-    this.onPullDownRefresh()
+    this.refresh()
+  },
+  onPullDownRefresh () {
+    this.refresh()
   },
   onReachBottom () {
-    const { news } = this
-    const lastnews = news[news.length - 1]
-    this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
+    this.loadmore()
   },
   methods: {
     ...mapActions([
       'getSlides',
       'getNews'
     ]),
-    async onPullDownRefresh () {
+    async refresh () {
       await Promise.all([
-        this.getNews(2, true),
+        this.getNews({ r: 2, init: true }),
         this.getSlides()
       ])
       wx.stopPullDownRefresh()
+    },
+    loadmore () {
+      const { news } = this
+      const lastnews = news[news.length - 1]
+      this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
     }
   }
 }
