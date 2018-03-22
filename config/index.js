@@ -10,7 +10,29 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {
+        target: 'https://api.ithome.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
+      '/dyn': {
+        target: 'https://dyn.ithome.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/dyn': ''
+        }
+      },
+      '/apiquan': {
+        target: 'https://apiquan.ithome.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/apiquan': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
