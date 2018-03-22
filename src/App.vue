@@ -2,11 +2,11 @@
   #app
     router-view
     .nav(v-show="$route.meta.nav")
-      router-link.nav-item(to="/pages/news/list")
+      router-link.nav-item(to="/pages/news/list", replace)
         img.nav-icon(v-if="$route.name === 'NewsList'", src="/static/assets/news-active.png")
         img.nav-icon(v-else, src="/static/assets/news.png")
         .nav-title(:class="{ active: $route.name === 'NewsList' }") 资讯
-      router-link.nav-item(to="/pages/quanzi/list")
+      router-link.nav-item(to="/pages/quanzi/list", replace)
         img.nav-icon(v-if="$route.name === 'QuanziList'", src="/static/assets/quanzi-active.png")
         img.nav-icon(v-else, src="/static/assets/quanzi.png")
         .nav-title(:class="{ active: $route.name === 'QuanziList' }") 圈子
