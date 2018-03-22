@@ -33,14 +33,7 @@ export default {
     ])
   },
   mounted () {
-    wx.startPullDownRefresh()
-  },
-  async onPullDownRefresh () {
-    await Promise.all([
-      this.getNews(2, true),
-      this.getSlides()
-    ])
-    wx.stopPullDownRefresh()
+    this.onPullDownRefresh()
   },
   onReachBottom () {
     const { news } = this
@@ -51,7 +44,14 @@ export default {
     ...mapActions([
       'getSlides',
       'getNews'
-    ])
+    ]),
+    async onPullDownRefresh () {
+      await Promise.all([
+        this.getNews(2, true),
+        this.getSlides()
+      ])
+      wx.stopPullDownRefresh()
+    }
   }
 }
 </script>

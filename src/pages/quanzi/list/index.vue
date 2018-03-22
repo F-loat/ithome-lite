@@ -28,11 +28,7 @@ export default {
     ])
   },
   mounted () {
-    wx.startPullDownRefresh()
-  },
-  async onPullDownRefresh () {
-    await this.getTopics(true)
-    wx.stopPullDownRefresh()
+    this.onPullDownRefresh()
   },
   onReachBottom () {
     this.getTopics()
@@ -40,7 +36,11 @@ export default {
   methods: {
     ...mapActions([
       'getTopics'
-    ])
+    ]),
+    async onPullDownRefresh () {
+      await this.getTopics(true)
+      wx.stopPullDownRefresh()
+    }
   }
 }
 </script>
