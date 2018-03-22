@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "flyio": "^0.3.8",
+    "minireset.css": "0.0.3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue-swiper-component": "^2.0.2",
