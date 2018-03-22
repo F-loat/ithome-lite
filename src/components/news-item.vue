@@ -6,8 +6,8 @@ a.news-item(
   .news-text
     .news-title {{news.title}}
     .news-info
-      text {{news.postdate}}
-      text(v-if="news.commentcount") {{news.commentcount}}评
+      div {{news.postdate}}
+      div(v-if="news.commentcount") {{news.commentcount}}评
 </template>
 
 <script>
@@ -15,7 +15,9 @@ export default {
   props: {
     news: {
       type: Object,
-      default: {}
+      default () {
+        return {}
+      }
     }
   }
 }

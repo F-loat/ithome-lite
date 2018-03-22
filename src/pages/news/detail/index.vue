@@ -3,7 +3,7 @@
   .header
     h1.news-title {{title}}
     .auth-info {{news.newssource}}({{news.newsauthor}})
-  rich-text.news-content(:nodes="news.detail")
+  .news-content(v-html="news.detail")
   h2.related-title(v-if="relatedNews.length") 相关文章
   .news-wrap
     news-item(

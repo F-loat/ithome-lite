@@ -4,7 +4,7 @@
     .comment-author {{comment.author}}
     .comment-phone {{comment.phone}}
     .comment-floor {{comment.floor}}
-  rich-text.comment-content(:nodes="comment.content")
+  .comment-content(v-html="comment.content")
 </template>
 
 <script>
@@ -12,7 +12,9 @@ export default {
   props: {
     comment: {
       type: Object,
-      default: {}
+      default () {
+        return {}
+      }
     }
   }
 }

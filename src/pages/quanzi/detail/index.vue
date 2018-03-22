@@ -9,7 +9,7 @@
     .topic-info-item
       img.topic-info-icon(src="/static/assets/quan_comment.png")
       span.topic-info-text {{topic.rc}}
-  rich-text.topic-content(:nodes="topic.content")
+  .topic-content(v-html="topic.content")
   .comment-wrap
     comment-item(
       v-for="comment of topic.reply",
