@@ -34,7 +34,7 @@ const store = new Vuex.Store({
       const formatedSlides = filtedSlides.map(formatSlideList)
       commit('slides', formatedSlides)
     },
-    async getNews ({ state, commit }, r = Date.now(), init) {
+    async getNews ({ state, commit }, { r = Date.now(), init }) {
       const news = await api.getNewslist(r)
       if (!news) return
       news.newslist.forEach((news) => {

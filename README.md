@@ -1,4 +1,4 @@
-# ithome-lite
+# ithome-lite ([WEB 版](https://github.com/F-loat/ithome-lite/tree/web-version))
 
 > IT之家小程序版客户端
 
