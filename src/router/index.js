@@ -14,27 +14,42 @@ export default new Router({
       path: '/',
       alias: '/pages/news/list',
       name: 'NewsList',
-      component: NewsList
+      component: NewsList,
+      meta: {
+        nav: true
+      }
     },
     {
       path: '/pages/news/detail',
       name: 'NewsDetail',
-      component: NewsDetail
+      component: NewsDetail,
+      meta: {
+        nav: false
+      }
     },
     {
       path: '/pages/news/comment',
       name: 'NewsComment',
-      component: NewsComment
+      component: NewsComment,
+      meta: {
+        nav: false
+      }
     },
     {
       path: '/pages/quanzi/list',
       name: 'QuanziList',
-      component: QuanziList
+      component: QuanziList,
+      meta: {
+        nav: true
+      }
     },
     {
       path: '/pages/quanzi/detail',
       name: 'QuanziDetail',
-      component: QuanziDetail
+      component: QuanziDetail,
+      meta: {
+        nav: false
+      }
     }
   ],
   mode: 'history'

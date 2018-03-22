@@ -1,7 +1,15 @@
-<template>
-  <div id="app">
-    <router-view/>
-  </div>
+<template lang="pug">
+  #app
+    router-view
+    .nav(v-show="$route.meta.nav")
+      a.nav-item(href="/pages/news/list")
+        img.nav-icon(v-if="$route.name === 'NewsList'", src="/static/assets/news-active.png")
+        img.nav-icon(v-else, src="/static/assets/news.png")
+        .nav-title(:class="{ active: $route.name === 'NewsList' }") 资讯
+      a.nav-item(href="/pages/quanzi/list")
+        img.nav-icon(v-if="$route.name === 'QuanziList'", src="/static/assets/quanzi-active.png")
+        img.nav-icon(v-else, src="/static/assets/quanzi.png")
+        .nav-title(:class="{ active: $route.name === 'QuanziList' }") 圈子
 </template>
 
 <script>
@@ -11,7 +19,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+@import url("~@/styles/index.less");
+
 .container {
   width: 100%;
   min-height: 100vh;
@@ -20,5 +30,38 @@ export default {
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 55px;
+  width: 100%;
+  display: flex;
+  background-color: #fff;
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.nav-icon {
+  width: 30px;
+  height: 30px;
+}
+.nav-title {
+  color: #aaa;
+  font-size: 12px;
+  &.active {
+    color: @primary-color;
+  }
 }
 </style>
