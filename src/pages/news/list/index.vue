@@ -56,9 +56,9 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .slider-wrap {
-  width: 375px;
+  width: 100%;
   height: 200px;
 }
 .slider-item {

@@ -45,7 +45,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .topic-item {
   display: block;
   width: 100%;

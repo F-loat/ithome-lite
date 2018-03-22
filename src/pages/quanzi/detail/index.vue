@@ -68,7 +68,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .topic-title {
   width: 100%;
   padding: 10px;

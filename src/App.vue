@@ -30,6 +30,7 @@ export default {
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 a {
