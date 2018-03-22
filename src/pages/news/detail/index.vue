@@ -38,8 +38,8 @@ export default {
     }
   },
   mounted () {
-    this.id = this.$root.$mp.query.id
-    this.title = this.$root.$mp.query.title
+    this.id = this.$route.query.id
+    this.title = this.$route.query.title
     this.getNews()
     this.getRelatedNews()
   },

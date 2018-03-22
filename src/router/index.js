@@ -36,5 +36,6 @@ export default new Router({
       name: 'QuanziDetail',
       component: QuanziDetail
     }
-  ]
+  ],
+  mode: 'history'
 })
