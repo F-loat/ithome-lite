@@ -50,6 +50,7 @@ img {
   width: 100%;
   display: flex;
   background-color: #fff;
+  border-top: 1px solid #eee;
 }
 .nav-item {
   flex: 1;
