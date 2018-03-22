@@ -11,6 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "flyio": "^0.3.8",
     "minireset.css": "0.0.3",
     "vue": "^2.5.2",
