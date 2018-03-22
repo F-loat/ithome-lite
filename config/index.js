@@ -11,6 +11,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+      '/apiquan/api': {
+        target: 'https://apiquan.ithome.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/apiquan': ''
+        }
+      },
       '/api': {
         target: 'https://api.ithome.com',
         changeOrigin: true,
@@ -23,13 +30,6 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '^/dyn': ''
-        }
-      },
-      '/apiquan': {
-        target: 'https://apiquan.ithome.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/apiquan': ''
         }
       }
     },
