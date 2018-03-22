@@ -34,7 +34,7 @@ export default {
   },
   async onPullDownRefresh () {
     await Promise.all([
-      this.getNews(2, true),
+      this.getNews({ r: 2, init: true }),
       this.getSlides()
     ])
     wx.stopPullDownRefresh()
@@ -42,7 +42,7 @@ export default {
   onReachBottom () {
     const { news } = this
     const lastnews = news[news.length - 1]
-    this.getNews(Date.parse(new Date(lastnews.postdate)))
+    this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
   },
   methods: {
     ...mapActions([
