@@ -10,7 +10,7 @@
       v-for="news of relatedNews",
       :news="news"
       :key="news.newsid")
-  a.comment-btn(:href="commentHref")
+  router-link.comment-btn(:to="commentHref")
     img.comment-icon(src="/static/assets/comment.png")
 </template>
 

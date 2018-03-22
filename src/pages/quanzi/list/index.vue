@@ -1,8 +1,8 @@
 <template lang="pug">
 .container
   .topic-wrap
-    a.topic-item(
-      :href="topic.link",
+    router-link.topic-item(
+      :to="topic.link",
       v-for="topic of topics",
       :key="topic.id")
       .topic-title {{topic.c}} {{topic.t}}

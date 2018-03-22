@@ -1,6 +1,6 @@
 <template lang="pug">
-a.news-item(
-  :href="news.link",
+router-link.news-item(
+  :to="news.link",
   v-if="!news.lapinid")
   img.news-img(:src="news.image", mode="aspectFill")
   .news-text

@@ -4,7 +4,7 @@
     swiper-item(
       v-for="slide of slides",
       :key="slide.link")
-      a.slider-item(:href="slide.link")
+      router-link.slider-item(:to="slide.link")
         .slider-title {{slide.title}}
         img.slider-img(:src="slide.image", mode="aspectFill")
   .news-wrap
