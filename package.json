@@ -14,6 +14,7 @@
     "flyio": "^0.3.8",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
+    "vue-swiper-component": "^2.0.2",
     "vuex": "^3.0.1",
     "xmlstring2json": "^0.1.9"
   },

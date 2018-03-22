@@ -1,6 +1,6 @@
 <template lang="pug">
 .container
-  swiper.slider-wrap(autoplay, indicator-dots, circular)
+  swiper.slider-wrap(autoPlay, showIndicator, v-if="slides.length > 0")
     swiper-item(
       v-for="slide of slides",
       :key="slide.link")
@@ -17,10 +17,13 @@
 <script>
 import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
+import { Swiper, Slide } from 'vue-swiper-component'
 import newsItem from '@/components/news-item'
 
 export default {
   components: {
+    Swiper,
+    SwiperItem: Slide,
     newsItem
   },
   computed: {
