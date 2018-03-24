@@ -1,29 +1,32 @@
 <template lang="pug">
 .container(v-show="show")
-  .topic-title {{topic.title}}
-  .topic-num 1楼
-  .topic-info
-    .topic-info-item
-      img.topic-info-icon(src="/static/assets/quan_hit.png")
-      span.topic-info-text {{topic.vc}}
-    .topic-info-item
-      img.topic-info-icon(src="/static/assets/quan_comment.png")
-      span.topic-info-text {{topic.rc}}
-  .topic-content(v-html="topic.content")
-  .comment-wrap
-    comment-item(
-      v-for="comment of topic.reply",
-      :key="comment.id",
-      :comment="comment")
+  pull-to(:bottom-load-method="getComments")
+    .topic-title {{topic.title}}
+    .topic-num 1楼
+    .topic-info
+      .topic-info-item
+        img.topic-info-icon(src="/static/assets/quan_hit.png")
+        span.topic-info-text {{topic.vc}}
+      .topic-info-item
+        img.topic-info-icon(src="/static/assets/quan_comment.png")
+        span.topic-info-text {{topic.rc}}
+    .topic-content(v-html="topic.content")
+    .comment-wrap
+      comment-item(
+        v-for="comment of topic.reply",
+        :key="comment.id",
+        :comment="comment")
 </template>
 
 <script>
+import PullTo from 'vue-pull-to'
 import api from '@/utils/api'
 import commentItem from '@/components/comment-item'
 import { formatComment } from '@/utils'
 
 export default {
   components: {
+    PullTo,
     commentItem
   },
   data () {
@@ -52,7 +55,7 @@ export default {
       this.topic = Object.assign({}, query, topic)
       this.show = true
     },
-    async getComments () {
+    async getComments (loaded) {
       if (this.loading) return
       this.loading = true
       const { query } = this.$route
@@ -63,6 +66,7 @@ export default {
       const formatedComments = newComments.map(formatComment)
       this.topic.reply = this.topic.reply.concat(formatedComments)
       this.loading = false
+      if (loaded) loaded()
     }
   }
 }

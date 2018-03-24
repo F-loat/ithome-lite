@@ -1,27 +1,32 @@
 <template lang="pug">
 .container
-  .topic-wrap
-    router-link.topic-item(
-      :to="topic.link",
-      v-for="topic of topics",
-      :key="topic.id")
-      .topic-title {{topic.c}} {{topic.t}}
-      .topic-info
-        .topic-info-item {{topic.un}}
-        .topic-info-item {{topic.cn}}
-        .topic-info-item
-          img.topic-info-icon(src="/static/assets/quan_hit.png")
-          span.topic-info-text {{topic.vc}}
-        .topic-info-item
-          img.topic-info-icon(src="/static/assets/quan_comment.png")
-          span.topic-info-text {{topic.rc}}
+  pull-to(:top-load-method="refresh", :bottom-load-method="loadmore")
+    .topic-wrap
+      router-link.topic-item(
+        :to="topic.link",
+        v-for="topic of topics",
+        :key="topic.id")
+        .topic-title {{topic.c}} {{topic.t}}
+        .topic-info
+          .topic-info-item {{topic.un}}
+          .topic-info-item {{topic.cn}}
+          .topic-info-item
+            img.topic-info-icon(src="/static/assets/quan_hit.png")
+            span.topic-info-text {{topic.vc}}
+          .topic-info-item
+            img.topic-info-icon(src="/static/assets/quan_comment.png")
+            span.topic-info-text {{topic.rc}}
 </template>
 
 <script>
 import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
+import PullTo from 'vue-pull-to'
 
 export default {
+  components: {
+    PullTo
+  },
   computed: {
     ...mapState([
       'topics'
@@ -40,12 +45,14 @@ export default {
     ...mapActions([
       'getTopics'
     ]),
-    async refresh () {
+    async refresh (loaded) {
       await this.getTopics(true)
       wx.stopPullDownRefresh()
+      if (loaded) loaded()
     },
-    loadmore () {
-      this.getTopics()
+    async loadmore (loaded) {
+      await this.getTopics()
+      if (loaded) loaded()
     }
   }
 }

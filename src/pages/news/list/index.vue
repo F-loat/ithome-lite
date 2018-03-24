@@ -1,29 +1,32 @@
 <template lang="pug">
 .container
-  swiper.slider-wrap(autoPlay, showIndicator, v-if="slides.length > 0")
-    swiper-item(
-      v-for="slide of slides",
-      :key="slide.link")
-      router-link.slider-item(:to="slide.link")
-        .slider-title {{slide.title}}
-        img.slider-img(:src="slide.image", mode="aspectFill")
-  .news-wrap
-    news-item(
-      v-for="item of news",
-      :news="item"
-      :key="item.newsid")
+  pull-to(:top-load-method="refresh", :bottom-load-method="loadmore")
+    swiper.slider-wrap(autoPlay, showIndicator, v-if="slides.length > 0")
+      swiper-item(
+        v-for="slide of slides",
+        :key="slide.link")
+        router-link.slider-item(:to="slide.link")
+          .slider-title {{slide.title}}
+          img.slider-img(:src="slide.image", mode="aspectFill")
+    .news-wrap
+      news-item(
+        v-for="(item, index) of news",
+        :news="item"
+        :key="index")
 </template>
 
 <script>
 import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
 import { Swiper, Slide } from 'vue-swiper-component'
+import PullTo from 'vue-pull-to'
 import newsItem from '@/components/news-item'
 
 export default {
   components: {
     Swiper,
     SwiperItem: Slide,
+    PullTo,
     newsItem
   },
   computed: {
@@ -46,17 +49,19 @@ export default {
       'getSlides',
       'getNews'
     ]),
-    async refresh () {
+    async refresh (loaded) {
       await Promise.all([
         this.getNews({ r: 2, init: true }),
         this.getSlides()
       ])
       wx.stopPullDownRefresh()
+      if (loaded) loaded()
     },
-    loadmore () {
+    async loadmore (loaded) {
       const { news } = this
       const lastnews = news[news.length - 1]
-      this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
+      await this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
+      if (loaded) loaded()
     }
   }
 }
