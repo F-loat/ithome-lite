@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "flyio": "^0.3.8",
+    "flyio": "^0.4.3",
     "minireset.css": "0.0.3",
     "vue": "^2.5.2",
     "vue-pull-to": "^0.1.6",
@@ -62,7 +62,7 @@
     "pug-loader": "^2.3.0",
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",
-    "shelljs": "^0.7.6",
+    "shelljs": "^0.8.1",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",

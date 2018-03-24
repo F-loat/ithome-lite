@@ -31,7 +31,7 @@ export function formatSlideList (slide) {
 
 export function formatComment (comment) {
   return {
-    id: comment.M.Ui,
+    id: comment.M.Ci,
     author: comment.M.N,
     phone: comment.M.Ta,
     floor: comment.M.SF || `${comment.F}楼`,
