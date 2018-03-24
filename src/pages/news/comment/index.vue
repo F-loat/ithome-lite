@@ -23,7 +23,7 @@ export default {
       comments: []
     }
   },
-  mounted () {
+  activated () {
     this.id = this.$route.query.id
     this.getComments()
   },

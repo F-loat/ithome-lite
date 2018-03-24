@@ -1,6 +1,9 @@
 <template lang="pug">
 .container
-  pull-to(:top-load-method="refresh", :bottom-load-method="loadmore")
+  pull-to(
+    :top-load-method="refresh",
+    :bottom-load-method="loadmore",
+    @scroll="saveScrollPosition")
     .topic-wrap
       router-link.topic-item(
         :to="topic.link",
@@ -23,6 +26,8 @@ import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
 import PullTo from 'vue-pull-to'
 
+let scrollTop = 0
+
 export default {
   components: {
     PullTo
@@ -34,6 +39,9 @@ export default {
   },
   mounted () {
     this.refresh()
+  },
+  activated () {
+    document.querySelector('.scroll-container').scrollTop = scrollTop
   },
   onPullDownRefresh () {
     this.refresh()
@@ -53,6 +61,9 @@ export default {
     async loadmore (loaded) {
       await this.getTopics()
       if (loaded) loaded()
+    },
+    saveScrollPosition (e) {
+      scrollTop = e.srcElement.scrollTop
     }
   }
 }

@@ -1,6 +1,10 @@
 <template lang="pug">
 .container
-  pull-to(:top-load-method="refresh", :bottom-load-method="loadmore")
+  pull-to(
+    :top-load-method="refresh",
+    :bottom-load-method="loadmore",
+    @scroll="saveScrollPosition"
+    ref="scroller")
     swiper.slider-wrap(autoPlay, showIndicator, v-if="slides.length > 0")
       swiper-item(
         v-for="slide of slides",
@@ -22,6 +26,8 @@ import { Swiper, Slide } from 'vue-swiper-component'
 import PullTo from 'vue-pull-to'
 import newsItem from '@/components/news-item'
 
+let scrollTop = 0
+
 export default {
   components: {
     Swiper,
@@ -37,6 +43,9 @@ export default {
   },
   mounted () {
     this.refresh()
+  },
+  activated () {
+    document.querySelector('.scroll-container').scrollTop = scrollTop
   },
   onPullDownRefresh () {
     this.refresh()
@@ -62,6 +71,9 @@ export default {
       const lastnews = news[news.length - 1]
       await this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
       if (loaded) loaded()
+    },
+    saveScrollPosition (e) {
+      scrollTop = e.srcElement.scrollTop
     }
   }
 }

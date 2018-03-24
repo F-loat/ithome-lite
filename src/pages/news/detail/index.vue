@@ -37,7 +37,7 @@ export default {
       return `/pages/news/comment?id=${this.id}`
     }
   },
-  mounted () {
+  activated () {
     this.id = this.$route.query.id
     this.title = this.$route.query.title
     this.getNews()

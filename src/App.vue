@@ -9,7 +9,8 @@
       img.nav-icon(v-if="$route.name === 'QuanziList'", src="/static/assets/quanzi-active.png")
       img.nav-icon(v-else, src="/static/assets/quanzi.png")
       .nav-title(:class="{ active: $route.name === 'QuanziList' }") 圈子
-  router-view
+  keep-alive
+    router-view
 </template>
 
 <script>

@@ -36,7 +36,7 @@ export default {
       topic: {}
     }
   },
-  mounted () {
+  activated () {
     this.getTopic()
   },
   onReachBottom () {
