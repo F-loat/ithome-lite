@@ -58,7 +58,7 @@ export default {
       const { query } = this.$root.$mp
       const comments = this.topic.reply
       const lastComment = comments[comments.length - 1]
-      const newComments = await api.getTopicComments(query.id, lastComment.M.Ci)
+      const newComments = await api.getTopicComments(query.id, lastComment.id)
       if (!newComments) return
       const formatedComments = newComments.map(formatComment)
       this.topic.reply = this.topic.reply.concat(formatedComments)
