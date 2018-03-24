@@ -81,8 +81,6 @@ export default {
 @import url("~@/styles/index.less");
 
 .header {
-  display: flex;
-  flex-direction: column;
   width: 100%;
   color: #fff;
   background-color: @primary-color;
@@ -95,7 +93,7 @@ export default {
 .auth-info {
   font-size: 12px;
   margin-top: 10px;
-  align-self: flex-end;
+  text-align: right;
 }
 .news-content {
   width: 100%;
