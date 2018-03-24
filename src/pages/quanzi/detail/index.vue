@@ -81,9 +81,9 @@ export default {
 }
 .topic-num {
   font-size: 12px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  float: right;
+  margin-top: -40px;
+  margin-right: 10px;
 }
 .topic-info {
   display: flex;
