@@ -45,6 +45,9 @@ export default {
   onUnload () {
     this.show = false
   },
+  deactivated () {
+    this.show = false
+  },
   methods: {
     async getTopic () {
       const { query } = this.$route

@@ -46,6 +46,9 @@ export default {
   onUnload () {
     this.show = false
   },
+  deactivated () {
+    this.show = false
+  },
   methods: {
     async getNews () {
       let { id } = this

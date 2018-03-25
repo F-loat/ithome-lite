@@ -23,20 +23,27 @@ export default {
 <style lang="less">
 @import url("~@/styles/index.less");
 
+#app {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
 .container {
   width: 100%;
   height: 100vh;
-  overflow: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
   overflow-x: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 a {
-  color: #666;
+  color: #222;
   text-decoration: none;
 }
 
