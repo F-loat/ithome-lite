@@ -56,8 +56,10 @@ const store = new Vuex.Store({
       const topics = await api.getTopics(rt)
       if (!topics) return
       topics.forEach(topic => {
-        const { id, c, t, un, vc } = topic
+        const { id, c, t, un, vc, uid } = topic
         topic.link = `/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`
+        const headpath = `00${String(uid).padStart(7, '0').replace(/\B([0-9]{2})/g, '/$1')}_60.jpg`
+        topic.headimg = `https://avatar.ithome.com/avatars/${headpath}`
       })
       if (init) {
         commit('topics', topics)

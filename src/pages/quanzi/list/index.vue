@@ -5,6 +5,8 @@
       :href="topic.link",
       v-for="topic of topics",
       :key="topic.id")
+      img.topic-headimg(src="/static/assets/avatar_default.png")
+      img.topic-headimg(:src="topic.headimg")
       .topic-title {{topic.c}} {{topic.t}}
       .topic-info
         .topic-info-item {{topic.un}}
@@ -53,8 +55,17 @@ export default {
 
 <style lang="less">
 .topic-item {
-  padding: 10px;
+  padding: 10px 10px 10px 50px;
   border-bottom: 1px solid #eee;
+  position: relative;
+}
+.topic-headimg {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 .topic-title {
   font-size: 16px;
