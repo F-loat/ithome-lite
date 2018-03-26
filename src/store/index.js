@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import xml2json from 'xmlstring2json'
-import { formatSlideList, formatTime } from '@/utils'
+import { formatSlideList, formatNewsList } from '@/utils'
 import api from '@/utils/api'
 
 Vue.use(Vuex)
@@ -34,17 +34,14 @@ const store = new Vuex.Store({
       const formatedSlides = filtedSlides.map(formatSlideList)
       commit('slides', formatedSlides)
     },
-    async getNews ({ state, commit }, init) {
-      const news = await api.getNewslist()
+    async getNewsList ({ state, commit }, init) {
+      const news = await api.getNewsList()
       if (!news) return
-      news.newslist.forEach((news) => {
-        news.postdate = formatTime(news.postdate)
-        news.link = `/pages/news/detail?id=${news.newsid}&title=${news.title}`
-      })
+      const formatedNews = news.newslist.map(formatNewsList)
       if (init) {
-        commit('news', news.newslist)
+        commit('news', formatedNews)
       } else {
-        commit('news', state.news.concat(news.newslist))
+        commit('news', state.news.concat(formatedNews))
       }
     },
     async getTopics ({ state, commit }, init) {

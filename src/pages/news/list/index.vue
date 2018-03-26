@@ -42,17 +42,17 @@ export default {
   methods: {
     ...mapActions([
       'getSlides',
-      'getNews'
+      'getNewsList'
     ]),
     async refresh () {
       await Promise.all([
-        this.getNews(true),
+        this.getNewsList(true),
         this.getSlides()
       ])
       wx.stopPullDownRefresh()
     }
     // loadmore () {
-    //   this.getNews()
+    //   this.getNewsList()
     // }
   }
 }
