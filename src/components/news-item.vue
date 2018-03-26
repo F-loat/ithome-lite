@@ -15,7 +15,9 @@ export default {
   props: {
     news: {
       type: Object,
-      default: {}
+      default () {
+        return {}
+      }
     }
   }
 }
