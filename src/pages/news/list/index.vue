@@ -1,6 +1,11 @@
 <template lang="pug">
 .container
-  swiper.slider-wrap(autoplay, indicator-dots, circular)
+  swiper.slider-wrap(
+    autoplay,
+    indicator-dots,
+    circular,
+    indicator-color="rgba(255, 255, 255, .3)",
+    indicator-active-color="rgba(210, 34, 34, .7)")
     swiper-item(
       v-for="slide of slides",
       :key="slide.link")
@@ -90,9 +95,9 @@ export default {
 
 .nomore {
   width: 100%;
-  line-height: 40px;
+  line-height: 50px;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   color: #ddd;
 }
 </style>

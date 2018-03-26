@@ -29,17 +29,17 @@ export default {
 
 <style lang="less" scoped>
 .topic-item {
-  padding: 10px 10px 10px 50px;
+  padding: 10px 10px 10px 60px;
   border-bottom: 1px solid #eee;
   position: relative;
 }
 .topic-headimg {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   position: absolute;
   left: 10px;
-  top: 10px;
+  top: 15px;
 }
 .topic-title {
   font-size: 16px;
