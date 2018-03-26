@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import xml2json from 'xmlstring2json'
-import { formatSlideList, formatNewsList } from '@/utils'
+import { formatSlideList, formatNewsList, formatTopicList } from '@/utils'
 import api from '@/utils/api'
 
 Vue.use(Vuex)
@@ -45,23 +45,18 @@ const store = new Vuex.Store({
       }
     },
     async getTopics ({ state, commit }, init) {
-      let rt = Date.now()
+      let replytime = Date.now()
       if (!init) {
         const lastTopic = state.topics[state.topics.length - 1]
-        rt = lastTopic.rt.replace(/[^0-9]/ig, '')
+        replytime = lastTopic.replytime.replace(/[^0-9]/ig, '')
       }
-      const topics = await api.getTopics(rt)
+      const topics = await api.getTopics(replytime)
       if (!topics) return
-      topics.forEach(topic => {
-        const { id, c, t, un, vc, uid } = topic
-        topic.link = `/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`
-        const headpath = `00${String(uid).padStart(7, '0').replace(/\B([0-9]{2})/g, '/$1')}_60.jpg`
-        topic.headimg = `https://avatar.ithome.com/avatars/${headpath}`
-      })
+      const formatedTopics = topics.map(formatTopicList)
       if (init) {
-        commit('topics', topics)
+        commit('topics', formatedTopics)
       } else {
-        commit('topics', state.topics.concat(topics))
+        commit('topics', state.topics.concat(formatedTopics))
       }
     }
   }
