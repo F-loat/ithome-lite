@@ -1,7 +1,7 @@
 import request from './request'
 
 const api = {
-  getNewslist: (r) => request.get('https://api.ithome.com/json/newslist/news', { r }),
+  getNewslist: (r) => request.get('https://api.ithome.com/json/newslist/news'),
   getNews: (id) => request.get(`https://api.ithome.com/xml/newscontent/${id}.xml`),
   getRelatedNews: (id) => request.get(`https://api.ithome.com/json/tags/0${id.slice(0, 3)}/${id}.json`, null, {
     parseJson: false

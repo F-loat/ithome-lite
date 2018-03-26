@@ -10,8 +10,8 @@
       v-for="news of relatedNews",
       :news="news"
       :key="news.newsid")
-  a.comment-btn(:href="commentHref")
-    img.comment-icon(src="/static/assets/comment.png")
+  //- a.comment-btn(:href="commentHref")
+  //-   img.comment-icon(src="/static/assets/comment.png")
 </template>
 
 <script>

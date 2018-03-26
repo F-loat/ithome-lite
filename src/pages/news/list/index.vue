@@ -12,6 +12,7 @@
       v-for="item of news",
       :news="item"
       :key="item.newsid")
+  .nomore 只给看这么多
 </template>
 
 <script>
@@ -35,9 +36,9 @@ export default {
   onPullDownRefresh () {
     this.refresh()
   },
-  onReachBottom () {
-    this.loadmore()
-  },
+  // onReachBottom () {
+  //   this.loadmore()
+  // },
   methods: {
     ...mapActions([
       'getSlides',
@@ -45,16 +46,14 @@ export default {
     ]),
     async refresh () {
       await Promise.all([
-        this.getNews({ r: 2, init: true }),
+        this.getNews(true),
         this.getSlides()
       ])
       wx.stopPullDownRefresh()
-    },
-    loadmore () {
-      const { news } = this
-      const lastnews = news[news.length - 1]
-      this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
     }
+    // loadmore () {
+    //   this.getNews()
+    // }
   }
 }
 </script>
@@ -87,5 +86,13 @@ export default {
 
 .news-wrap {
   padding: 0 10px;
+}
+
+.nomore {
+  width: 100%;
+  line-height: 40px;
+  text-align: center;
+  font-size: 12px;
+  color: #ddd;
 }
 </style>
