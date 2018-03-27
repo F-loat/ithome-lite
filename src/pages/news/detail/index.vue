@@ -10,8 +10,8 @@
       v-for="news of relatedNews",
       :news="news"
       :key="news.newsid")
-  router-link.comment-btn(:to="commentHref")
-    img.comment-icon(src="/static/assets/comment.png")
+  //- router-link.comment-btn(:to="commentHref")
+  //-   img.comment-icon(src="/static/assets/comment.png")
 </template>
 
 <script>
@@ -67,7 +67,7 @@ export default {
       const newslist = await api.getRelatedNews(this.id)
       if (!newslist) return
       const parsedNews = JSON.parse(newslist.replace('var tag_jsonp =', ''))
-      this.relatedNews = parsedNews.map(news => {
+      this.relatedNews = parsedNews.slice(0, 3).map(news => {
         return {
           title: news.newstitle,
           image: news.img,

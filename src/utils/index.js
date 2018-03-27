@@ -29,6 +29,38 @@ export function formatSlideList (slide) {
   }
 }
 
+export function formatNewsList (news) {
+  const { newsid, title, postdate, commentcount, lapinid, image } = news
+  return {
+    id: newsid,
+    title,
+    postdate: formatTime(postdate),
+    commentcount,
+    lapinid,
+    image,
+    link: `/pages/news/detail?id=${newsid}&title=${title}`
+  }
+}
+
+export function formatTopicList (topic) {
+  const { id, c, cn, t, vc, rc, rt, un, uid } = topic
+  const headpath = `00${String(uid).padStart(7, '0').replace(/\B([0-9]{2})/g, '/$1')}_60.jpg`
+  return {
+    id,
+    title: t,
+    tag: c,
+    type: cn,
+    author: {
+      nickname: un,
+      headimg: `https://avatar.ithome.com/avatars/${headpath}`
+    },
+    viewcount: vc,
+    replycount: rc,
+    replytime: rt,
+    link: `/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`
+  }
+}
+
 export function formatComment (comment) {
   return {
     id: comment.M.Ci,

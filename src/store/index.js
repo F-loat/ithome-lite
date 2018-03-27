@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import xml2json from 'xmlstring2json'
-import { formatSlideList, formatTime } from '@/utils'
+import { formatSlideList, formatNewsList, formatTopicList } from '@/utils'
 import api from '@/utils/api'
 
 Vue.use(Vuex)
@@ -34,35 +34,29 @@ const store = new Vuex.Store({
       const formatedSlides = filtedSlides.map(formatSlideList)
       commit('slides', formatedSlides)
     },
-    async getNews ({ state, commit }, { r = Date.now(), init }) {
-      const news = await api.getNewslist(r)
+    async getNewsList ({ state, commit }, init) {
+      const news = await api.getNewsList()
       if (!news) return
-      news.newslist.forEach((news) => {
-        news.postdate = formatTime(news.postdate)
-        news.link = `/pages/news/detail?id=${news.newsid}&title=${news.title}`
-      })
+      const formatedNews = news.newslist.map(formatNewsList)
       if (init) {
-        commit('news', news.newslist)
+        commit('news', formatedNews)
       } else {
-        commit('news', state.news.concat(news.newslist))
+        commit('news', state.news.concat(formatedNews))
       }
     },
     async getTopics ({ state, commit }, init) {
-      let rt = Date.now()
+      let replytime = Date.now()
       if (!init) {
         const lastTopic = state.topics[state.topics.length - 1]
-        rt = lastTopic.rt.replace(/[^0-9]/ig, '')
+        replytime = lastTopic.replytime.replace(/[^0-9]/ig, '')
       }
-      const topics = await api.getTopics(rt)
+      const topics = await api.getTopics(replytime)
       if (!topics) return
-      topics.forEach(topic => {
-        const { id, c, t, un, vc } = topic
-        topic.link = `/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`
-      })
+      const formatedTopics = topics.map(formatTopicList)
       if (init) {
-        commit('topics', topics)
+        commit('topics', formatedTopics)
       } else {
-        commit('topics', state.topics.concat(topics))
+        commit('topics', state.topics.concat(formatedTopics))
       }
     }
   }

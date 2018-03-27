@@ -5,32 +5,24 @@
     :bottom-load-method="loadmore",
     @scroll="saveScrollPosition")
     .topic-wrap
-      router-link.topic-item(
-        :to="topic.link",
+      topicItem(
         v-for="topic of topics",
+        :topic="topic"
         :key="topic.id")
-        .topic-title {{topic.c}} {{topic.t}}
-        .topic-info
-          .topic-info-item {{topic.un}}
-          .topic-info-item {{topic.cn}}
-          .topic-info-item
-            img.topic-info-icon(src="/static/assets/quan_hit.png")
-            span.topic-info-text {{topic.vc}}
-          .topic-info-item
-            img.topic-info-icon(src="/static/assets/quan_comment.png")
-            span.topic-info-text {{topic.rc}}
 </template>
 
 <script>
 import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
 import PullTo from 'vue-pull-to'
+import topicItem from '@/components/topic-item'
 
 let scrollTop = 0
 
 export default {
   components: {
-    PullTo
+    PullTo,
+    topicItem
   },
   computed: {
     ...mapState([
@@ -69,33 +61,5 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.topic-item {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 1px solid #eee;
-}
-.topic-title {
-  font-size: 16px;
-}
-.topic-info {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 10px;
-}
-.topic-info-item {
-  margin-left: 10px;
-  font-size: 12px;
-  color: #aaa;
-  display: flex;
-  align-items: center;
-}
-.topic-info-icon {
-  width: 15px;
-  height: 15px;
-  margin-right: 4px;
-}
+<style lang="less">
 </style>

@@ -2,7 +2,6 @@
 .container
   pull-to(
     :top-load-method="refresh",
-    :bottom-load-method="loadmore",
     @scroll="saveScrollPosition"
     ref="scroller")
     swiper.slider-wrap(autoPlay, showIndicator, v-if="slides.length > 0")
@@ -17,6 +16,7 @@
         v-for="(item, index) of news",
         :news="item"
         :key="index")
+    .nomore 只给看这么多
 </template>
 
 <script>
@@ -50,28 +50,26 @@ export default {
   onPullDownRefresh () {
     this.refresh()
   },
-  onReachBottom () {
-    this.loadmore()
-  },
+  // onReachBottom () {
+  //   this.loadmore()
+  // },
   methods: {
     ...mapActions([
       'getSlides',
-      'getNews'
+      'getNewsList'
     ]),
     async refresh (loaded) {
       await Promise.all([
-        this.getNews({ r: 2, init: true }),
+        this.getNewsList(true),
         this.getSlides()
       ])
       wx.stopPullDownRefresh()
       if (loaded) loaded()
     },
-    async loadmore (loaded) {
-      const { news } = this
-      const lastnews = news[news.length - 1]
-      await this.getNews({ r: Date.parse(new Date(lastnews.postdate)) })
-      if (loaded) loaded()
-    },
+    // async loadmore (loaded) {
+    //   await this.getNewsList()
+    //   if (loaded) loaded()
+    // },
     saveScrollPosition (e) {
       scrollTop = e.srcElement.scrollTop
     }
@@ -107,5 +105,13 @@ export default {
 
 .news-wrap {
   padding: 0 10px;
+}
+
+.nomore {
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  color: #ddd;
 }
 </style>
