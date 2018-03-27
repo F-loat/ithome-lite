@@ -1,5 +1,5 @@
 <template lang="pug">
-a.topic-item(:href="topic.link")
+router-link.topic-item(:to="topic.link")
   img.topic-headimg(src="/static/assets/avatar_default.png")
   img.topic-headimg(:src="topic.author.headimg")
   .topic-title {{topic.tag}} {{topic.title}}
