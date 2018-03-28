@@ -76,6 +76,18 @@ export default {
         }
       })
     }
+  },
+  watch: {
+    async $route (to, from) {
+      if (to.name !== 'NewsDetail') return
+      this.id = this.$route.query.id
+      this.title = this.$route.query.title
+      await Promise.all([
+        this.getNews(),
+        this.getRelatedNews()
+      ])
+      document.querySelector('.container').scrollTop = 0
+    }
   }
 }
 </script>
