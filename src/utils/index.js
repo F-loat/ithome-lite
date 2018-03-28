@@ -20,12 +20,13 @@ export function formatTime (date) {
 }
 
 export function formatSlideList (slide) {
+  const title = slide.title['#text']
+  const image = slide.image['#text']
+  const link = slide.link['#text']
   return {
-    title: slide.title['#text'],
-    image: slide.image['#text'],
-    link: `/pages/news/detail?id=${slide.link['#text']}&title=${
-      slide.title['#text']
-    }`
+    title,
+    image,
+    link: encodeURI(`/pages/news/detail?id=${link}&title=${title}`)
   }
 }
 
@@ -38,7 +39,7 @@ export function formatNewsList (news) {
     commentcount,
     lapinid,
     image,
-    link: `/pages/news/detail?id=${newsid}&title=${title}`
+    link: encodeURI(`/pages/news/detail?id=${newsid}&title=${title}`)
   }
 }
 
@@ -57,7 +58,7 @@ export function formatTopicList (topic) {
     viewcount: vc,
     replycount: rc,
     replytime: rt,
-    link: `/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`
+    link: encodeURI(`/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`)
   }
 }
 

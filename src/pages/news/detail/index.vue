@@ -68,7 +68,7 @@ export default {
         return {
           title: news.newstitle,
           image: news.img,
-          link: `/pages/news/detail?id=${news.newsid}&title=${news.newstitle}`,
+          link: encodeURI(`/pages/news/detail?id=${news.newsid}&title=${news.newstitle}`),
           postdate: news.postdate
         }
       })
