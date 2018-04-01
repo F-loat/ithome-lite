@@ -4,7 +4,6 @@ var genEntry = require('mpvue-entry')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
-var pages = require('./pages')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
