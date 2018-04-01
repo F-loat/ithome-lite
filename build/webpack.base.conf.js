@@ -1,5 +1,6 @@
 var path = require('path')
 var fs = require('fs')
+var genEntry = require('mpvue-entry')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
@@ -9,13 +10,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-var entry = {
-  app: resolve('./src/main.js')
-}
-
-pages.forEach(page => {
-  entry[page] = resolve(`./src/${page}/main.js`)
-})
+const entry = genEntry('./src/router/routes.js')
 
 module.exports = {
   entry,
@@ -44,7 +39,7 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
+        include: [resolve('src')],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -56,7 +51,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        include: [resolve('src'), resolve('test')],
+        include: [resolve('src'), resolve('node_modules/mpvue-entry')],
         use: [
           'babel-loader',
           {
