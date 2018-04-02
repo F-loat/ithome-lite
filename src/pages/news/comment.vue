@@ -24,7 +24,7 @@ export default {
     }
   },
   mounted () {
-    this.id = this.$root.$mp.query.id
+    this.id = this.$route.query.id
     this.getComments()
   },
   onUnload () {
