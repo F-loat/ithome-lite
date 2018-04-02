@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Toast from 'vue2-toast'
 import router from '@/router'
 import store from '@/store'
-import App from './App'
+import App from '@/App'
 import 'minireset.css'
 import 'vue2-toast/lib/toast.css'
 

@@ -39,7 +39,7 @@ export default {
   },
   activated () {
     this.id = this.$route.query.id
-    this.title = this.$route.query.title
+    this.title = decodeURI(this.$route.query.title)
     this.getNews()
     this.getRelatedNews()
   },
@@ -71,7 +71,7 @@ export default {
         return {
           title: news.newstitle,
           image: news.img,
-          link: `/pages/news/detail?id=${news.newsid}&title=${news.newstitle}`,
+          link: encodeURI(`/pages/news/detail?id=${news.newsid}&title=${news.newstitle}`),
           postdate: news.postdate
         }
       })
