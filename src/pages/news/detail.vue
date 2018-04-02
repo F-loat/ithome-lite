@@ -39,7 +39,7 @@ export default {
   },
   mounted () {
     this.id = this.$root.$mp.query.id
-    this.title = this.$root.$mp.query.title
+    this.title = decodeURI(this.$root.$mp.query.title)
     this.getNews()
     this.getRelatedNews()
   },
