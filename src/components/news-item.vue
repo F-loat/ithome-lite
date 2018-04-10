@@ -1,6 +1,6 @@
 <template lang="pug">
-a.news-item(
-  :href="news.link",
+.news-item(
+  @click="turn",
   v-if="!news.lapinid")
   img.news-img(:src="news.image", mode="aspectFill")
   .news-text
@@ -18,6 +18,12 @@ export default {
       default () {
         return {}
       }
+    }
+  },
+  methods: {
+    turn () {
+      const { link } = this.news
+      this.$router.push(link)
     }
   }
 }

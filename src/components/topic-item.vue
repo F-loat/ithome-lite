@@ -1,5 +1,5 @@
 <template lang="pug">
-a.topic-item(:href="topic.link")
+.topic-item(@click="turn")
   img.topic-headimg(src="/static/assets/avatar_default.png")
   img.topic-headimg(:src="topic.author.headimg")
   .topic-title {{topic.tag}} {{topic.title}}
@@ -22,6 +22,20 @@ export default {
       default () {
         return {}
       }
+    }
+  },
+  methods: {
+    turn () {
+      const { id, title, author, viewcount } = this.topic
+      this.$router.push({
+        path: '/pages/quanzi/detail',
+        query: {
+          id,
+          title,
+          author,
+          vc: viewcount
+        }
+      })
     }
   }
 }
