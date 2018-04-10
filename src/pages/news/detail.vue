@@ -1,5 +1,5 @@
 <template lang="pug">
-.container(v-show="show")
+.container
   .header
     h1.news-title {{title}}
     .auth-info {{news.newssource}}({{news.newsauthor}})
@@ -10,7 +10,7 @@
       v-for="news of relatedNews",
       :news="news"
       :key="news.newsid")
-  //- .comment-btn(@click="$router.push(commentHref)")
+  //- .comment-btn(@click="turnToComment")
   //-   img.comment-icon(src="/static/assets/comment.png")
 </template>
 
@@ -19,34 +19,44 @@ import xml2json from 'xmlstring2json'
 import api from '@/utils/api'
 import newsItem from '@/components/news-item'
 
+const dataArr = []
+
 export default {
   components: {
     newsItem
   },
   data () {
     return {
-      show: false,
       id: null,
       title: '',
       news: {},
       relatedNews: []
     }
   },
-  computed: {
-    commentHref () {
-      return `/pages/news/comment?id=${this.id}`
-    }
-  },
-  mounted () {
+  async mounted () {
     this.id = this.$route.query.id
     this.title = decodeURI(this.$route.query.title)
-    this.getNews()
-    this.getRelatedNews()
+    await Promise.all([
+      this.getNews(),
+      this.getRelatedNews()
+    ])
+    dataArr.push({ ...this.$data })
   },
   onUnload () {
-    this.show = false
+    dataArr.pop()
+    const dataNum = dataArr.length
+    if (!dataNum) return
+    Object.assign(this, dataArr[dataNum - 1])
   },
   methods: {
+    turnToComment () {
+      this.$router.push({
+        path: '/pages/news/comment',
+        query: {
+          id: this.id
+        }
+      })
+    },
     async getNews () {
       let { id } = this
       id = `${id.slice(0, 3)}/${id.slice(3, 6)}`
@@ -58,7 +68,6 @@ export default {
         detail: parsedNews.detail['#text'].replace(/<img/g, '<img width="100%"'),
         newsauthor: parsedNews.newsauthor['#text']
       }
-      this.show = true
     },
     async getRelatedNews () {
       const newslist = await api.getRelatedNews(this.id)
