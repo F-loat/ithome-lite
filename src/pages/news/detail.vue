@@ -34,6 +34,7 @@ export default {
     }
   },
   async mounted () {
+    Object.assign(this.$data, this.$options.data())
     this.id = this.$route.query.id
     this.title = decodeURI(this.$route.query.title)
     await Promise.all([
@@ -46,7 +47,7 @@ export default {
     dataArr.pop()
     const dataNum = dataArr.length
     if (!dataNum) return
-    Object.assign(this, dataArr[dataNum - 1])
+    Object.assign(this.$data, dataArr[dataNum - 1])
   },
   methods: {
     turnToComment () {

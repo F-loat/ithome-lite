@@ -1,5 +1,5 @@
 <template lang="pug">
-.container(v-show="show")
+.container
   .comment-wrap
     comment-item(
       v-for="comment of comments",
@@ -18,17 +18,14 @@ export default {
   },
   data () {
     return {
-      show: false,
       id: null,
       comments: []
     }
   },
   mounted () {
+    Object.assign(this.$data, this.$options.data())
     this.id = this.$route.query.id
     this.getComments()
-  },
-  onUnload () {
-    this.show = false
   },
   methods: {
     async getComments () {
@@ -41,7 +38,6 @@ export default {
         comment.M.N = unescape(comment.M.N)
         return formatComment(comment)
       })
-      this.show = true
     }
   }
 }

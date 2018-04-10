@@ -1,5 +1,5 @@
 <template lang="pug">
-.container(v-show="show")
+.container
   .topic-title {{topic.title}}
   .topic-num 1楼
   .topic-info
@@ -28,19 +28,16 @@ export default {
   },
   data () {
     return {
-      show: false,
       loading: false,
       topic: {}
     }
   },
   mounted () {
+    Object.assign(this.$data, this.$options.data())
     this.getTopic()
   },
   onReachBottom () {
     this.getComments()
-  },
-  onUnload () {
-    this.show = false
   },
   methods: {
     async getTopic () {
@@ -53,7 +50,6 @@ export default {
         title: decodeURI(query.title),
         vc: decodeURI(query.vc)
       }, topic)
-      this.show = true
     },
     async getComments () {
       if (this.loading) return
