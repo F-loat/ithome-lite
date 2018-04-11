@@ -36,7 +36,7 @@ export default {
   async mounted () {
     Object.assign(this.$data, this.$options.data())
     this.id = this.$route.query.id
-    this.title = decodeURI(this.$route.query.title)
+    this.title = this.$route.query.title
     await Promise.all([
       this.getNews(),
       this.getRelatedNews()
@@ -78,7 +78,7 @@ export default {
         return {
           title: news.newstitle,
           image: news.img,
-          link: encodeURI(`/pages/news/detail?id=${news.newsid}&title=${news.newstitle}`),
+          link: `/pages/news/detail?id=${news.newsid}&title=${news.newstitle}`,
           postdate: news.postdate
         }
       })

@@ -47,8 +47,8 @@ export default {
       topic.content = topic.content.replace('!--IMG_1--', `img src="${topic.imgs[0]}" width="100%" /`)
       topic.reply = topic.reply.map(formatComment)
       this.topic = Object.assign({
-        title: decodeURI(query.title),
-        vc: decodeURI(query.vc)
+        title: query.title,
+        vc: query.vc
       }, topic)
     },
     async getComments () {

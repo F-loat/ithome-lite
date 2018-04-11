@@ -8,7 +8,7 @@
     indicator-active-color="rgba(210, 34, 34, .7)")
     swiper-item(
       v-for="slide of slides",
-      :key="slide.link")
+      :key="slide.title")
       .slider-item(@click="$router.push(slide.link)")
         .slider-title {{slide.title}}
         img.slider-img(:src="slide.image", mode="aspectFill")
