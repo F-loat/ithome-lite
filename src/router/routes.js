@@ -12,7 +12,7 @@ module.exports = [
   },
   {
     path: '/pages/news/detail',
-    name: 'NewsDetai',
+    name: 'NewsDetail',
     meta: {
       nav: false
     },

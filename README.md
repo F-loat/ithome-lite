@@ -3,8 +3,12 @@
 > IT之家小程序版客户端
 
 
-## 扫码体验 ([#2](https://github.com/F-loat/ithome-lite/issues/2))
-![小程序码](./static/qrcode_beta.jpg)
+## 相关依赖
+
+* [flyio](https://github.com/wendux/fly/blob/master/README-CH.md) - 同时支持浏览器、小程序、Node、Weex 及快应用的基于 Promise 的跨平台请求库
+* [mpvue-entry](https://github.com/F-loat/mpvue-entry) - 集中式页面配置，不再需要重复编辑各页面的 main.js 文件
+* [mpvue-router-patch](https://github.com/F-loat/mpvue-router-patch) - 在 mpvue 中使用 vue-router 兼容的路由写法
+* [xmlstring2json](https://github.com/vilien/xmlstring2json) - xml字符串转换 json 格式，适用于微信小程序
 
 
 ## 截图展示
@@ -81,3 +85,7 @@ const app = new Vue({
 * 圈子详情 https://apiquan.ithome.com/api/post/236076
 * 圈子评论 https://apiquan.ithome.com/api/reply?postid=236076&replyidlessthan=3241294
 
+
+## 相关文章
+
+* [Mpvue 小程序转 Web 实践总结](https://juejin.im/post/5ab84a33f265da239c7b56bd)

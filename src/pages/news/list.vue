@@ -4,18 +4,23 @@
     :top-load-method="refresh",
     @scroll="saveScrollPosition"
     ref="scroller")
-    swiper.slider-wrap(autoPlay, showIndicator, v-if="slides.length > 0")
+    swiper.slider-wrap(
+      autoPlay,
+      indicator-dots,
+      circular,
+      indicator-color="rgba(255, 255, 255, .3)",
+      indicator-active-color="rgba(210, 34, 34, .7)")
       swiper-item(
         v-for="slide of slides",
-        :key="slide.link")
-        router-link.slider-item(:to="slide.link")
+        :key="slide.title")
+        .slider-item(@click="$router.push(slide.link)")
           .slider-title {{slide.title}}
           img.slider-img(:src="slide.image", mode="aspectFill")
     .news-wrap
       news-item(
-        v-for="(item, index) of news",
+        v-for="item of news",
         :news="item"
-        :key="index")
+        :key="item.newsid")
     .nomore 只给看这么多
 </template>
 

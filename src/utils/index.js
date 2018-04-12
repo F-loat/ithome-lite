@@ -26,7 +26,7 @@ export function formatSlideList (slide) {
   return {
     title,
     image,
-    link: encodeURI(`/pages/news/detail?id=${link}&title=${title}`)
+    link: `/pages/news/detail?id=${link}&title=${title}`
   }
 }
 
@@ -39,7 +39,7 @@ export function formatNewsList (news) {
     commentcount,
     lapinid,
     image,
-    link: encodeURI(`/pages/news/detail?id=${newsid}&title=${title}`)
+    link: `/pages/news/detail?id=${newsid}&title=${title}`
   }
 }
 
@@ -57,8 +57,7 @@ export function formatTopicList (topic) {
     },
     viewcount: vc,
     replycount: rc,
-    replytime: rt,
-    link: encodeURI(`/pages/quanzi/detail?id=${id}&title=${c} ${t}&author=${un}&vc=${vc}`)
+    replytime: rt
   }
 }
 

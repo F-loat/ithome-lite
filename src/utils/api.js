@@ -1,24 +1,43 @@
 import request from './request'
 
+const baseUrlApi = '/api'
+const baseUrlDyn = '/dyn'
+const baseUrlQuan = '/apiquan'
+
 const api = {
-  getNewsList: () => request.get('/api/json/newslist/news'),
-  getNews: (id) => request.get(`/api/xml/newscontent/${id}.xml`),
-  getRelatedNews: (id) => request.get(`/api/json/tags/0${id.slice(0, 3)}/${id}.json`, null, {
+  getNewsList: (r) => request.get('/json/newslist/news', null, {
+    baseURL: baseUrlApi
+  }),
+  getNews: (id) => request.get(`/xml/newscontent/${id}.xml`, null, {
+    baseURL: baseUrlApi
+  }),
+  getRelatedNews: (id) => request.get(`/json/tags/0${id.slice(0, 3)}/${id}.json`, null, {
+    baseURL: baseUrlApi,
     parseJson: false
   }),
-  getNewsComments: (id) => request.get(`/dyn/json/commentlist/350/87a8e5b144d81938.json`),
-  getSlides: () => request.get('/api/xml/slide/slide.xml'),
-  getTopics: (r) => request.get('/apiquan/api/post', {
+  getNewsComments: (id) => request.get(`/json/commentlist/350/87a8e5b144d81938.json`, null, {
+    baseURL: baseUrlDyn
+  }),
+  getSlides: () => request.get('/xml/slide/slide.xml', null, {
+    baseURL: baseUrlApi
+  }),
+  getTopics: (r) => request.get('/api/post', {
     categoryid: 0,
     type: 0,
     orderTime: r,
     visistCount: '',
     pageLength: ''
+  }, {
+    baseURL: baseUrlQuan
   }),
-  getTopic: (id) => request.get(`/apiquan/api/post/${id}`),
-  getTopicComments: (id, last) => request.get('/apiquan/api/reply', {
+  getTopic: (id) => request.get(`/api/post/${id}`, null, {
+    baseURL: baseUrlQuan
+  }),
+  getTopicComments: (id, last) => request.get('/api/reply', {
     postid: id,
     replyidlessthan: last
+  }, {
+    baseURL: baseUrlQuan
   })
 }
 
