@@ -8,7 +8,7 @@ module.exports = [
   },
   {
     path: '/pages/news/detail',
-    name: 'NewsDetai',
+    name: 'NewsDetail',
     config: {
       navigationBarTitleText: '文章详情'
     }
