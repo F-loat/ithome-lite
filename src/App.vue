@@ -9,14 +9,60 @@
       img.nav-icon(v-if="$route.name === 'QuanziList'", src="/static/assets/quanzi-active.png")
       img.nav-icon(v-else, src="/static/assets/quanzi.png")
       .nav-title(:class="{ active: $route.name === 'QuanziList' }") 圈子
-  keep-alive
-    router-view
+  pull-to(
+    ref="scroller",
+    :top-load-method="refresh",
+    :bottom-load-method="loadmore",
+    :is-top-bounce="!!onPullDownRefresh",
+    :is-bottom-bounce="!!onReachBottom",
+    @scroll="saveScrollPosition")
+    keep-alive
+      router-view(ref="current")
 </template>
 
 <script>
+import PullTo from 'vue-pull-to'
+
 export default {
   name: 'App',
-  mpType: 'app'
+  mpType: 'app',
+  components: {
+    PullTo
+  },
+  data () {
+    return {
+      onPullDownRefresh: null,
+      onReachBottom: null
+    }
+  },
+  methods: {
+    async refresh (loaded) {
+      if (this.onPullDownRefresh) {
+        await this.onPullDownRefresh.call(this.$refs.current)
+      }
+      loaded()
+    },
+    async loadmore (loaded) {
+      if (this.onReachBottom) {
+        await this.onReachBottom.call(this.$refs.current)
+      }
+      loaded()
+    },
+    saveScrollPosition (e) {
+      const { current } = this.$refs
+      current.scrollTop = e.srcElement.scrollTop
+    }
+  },
+  watch: {
+    $route () {
+      this.$nextTick(() => {
+        const { current } = this.$refs
+        if (!current) return
+        this.onPullDownRefresh = current.$options.onPullDownRefresh
+        this.onReachBottom = current.$options.onReachBottom
+      })
+    }
+  }
 }
 </script>
 
@@ -26,20 +72,20 @@ export default {
 #app {
   max-width: 540px;
   margin: 0 auto;
+  height: 100vh;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .container {
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
-  overflow-x: hidden;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 a {

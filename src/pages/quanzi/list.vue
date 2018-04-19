@@ -1,27 +1,19 @@
 <template lang="pug">
 .container
-  pull-to(
-    :top-load-method="refresh",
-    :bottom-load-method="loadmore",
-    @scroll="saveScrollPosition")
-    .topic-wrap
-      topicItem(
-        v-for="topic of topics",
-        :topic="topic"
-        :key="topic.id")
+  .topic-wrap
+    topicItem(
+      v-for="topic of topics",
+      :topic="topic"
+      :key="topic.id")
 </template>
 
 <script>
 import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
-import PullTo from 'vue-pull-to'
 import topicItem from '@/components/topic-item'
-
-let scrollTop = 0
 
 export default {
   components: {
-    PullTo,
     topicItem
   },
   computed: {
@@ -30,33 +22,22 @@ export default {
     ])
   },
   mounted () {
-    this.refresh()
+    this.$options.onPullDownRefresh.call(this)
   },
   activated () {
-    document.querySelector('.scroll-container').scrollTop = scrollTop
+    document.querySelector('.scroll-container').scrollTop = this.scrollTop
   },
-  onPullDownRefresh () {
-    this.refresh()
+  async onPullDownRefresh () {
+    await this.getTopics(true)
+    wx.stopPullDownRefresh()
   },
   onReachBottom () {
-    this.loadmore()
+    return this.getTopics()
   },
   methods: {
     ...mapActions([
       'getTopics'
-    ]),
-    async refresh (loaded) {
-      await this.getTopics(true)
-      wx.stopPullDownRefresh()
-      if (loaded) loaded()
-    },
-    async loadmore (loaded) {
-      await this.getTopics()
-      if (loaded) loaded()
-    },
-    saveScrollPosition (e) {
-      scrollTop = e.srcElement.scrollTop
-    }
+    ])
   }
 }
 </script>

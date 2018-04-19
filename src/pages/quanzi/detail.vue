@@ -1,32 +1,29 @@
 <template lang="pug">
 .container
-  pull-to(:bottom-load-method="getComments")
-    .topic-title {{topic.title}}
-    .topic-num 1楼
-    .topic-info
-      .topic-info-item
-        img.topic-info-icon(src="/static/assets/quan_hit.png")
-        span.topic-info-text {{topic.vc}}
-      .topic-info-item
-        img.topic-info-icon(src="/static/assets/quan_comment.png")
-        span.topic-info-text {{topic.rc}}
-    .topic-content(:nodes="topic.content")
-    .comment-wrap
-      comment-item(
-        v-for="comment of topic.reply",
-        :key="comment.id",
-        :comment="comment")
+  .topic-title {{topic.title}}
+  .topic-num 1楼
+  .topic-info
+    .topic-info-item
+      img.topic-info-icon(src="/static/assets/quan_hit.png")
+      span.topic-info-text {{topic.vc}}
+    .topic-info-item
+      img.topic-info-icon(src="/static/assets/quan_comment.png")
+      span.topic-info-text {{topic.rc}}
+  .topic-content(v-html="topic.content")
+  .comment-wrap
+    comment-item(
+      v-for="comment of topic.reply",
+      :key="comment.id",
+      :comment="comment")
 </template>
 
 <script>
-import PullTo from 'vue-pull-to'
 import api from '@/utils/api'
 import commentItem from '@/components/comment-item'
 import { formatComment } from '@/utils'
 
 export default {
   components: {
-    PullTo,
     commentItem
   },
   data () {
@@ -40,7 +37,7 @@ export default {
     this.getTopic()
   },
   onReachBottom () {
-    this.getComments()
+    return this.getComments()
   },
   methods: {
     async getTopic () {

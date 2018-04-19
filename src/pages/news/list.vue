@@ -1,43 +1,36 @@
 <template lang="pug">
 .container
-  pull-to(
-    :top-load-method="refresh",
-    @scroll="saveScrollPosition"
-    ref="scroller")
-    swiper.slider-wrap(
-      autoPlay,
-      indicator-dots,
-      circular,
-      indicator-color="rgba(255, 255, 255, .3)",
-      indicator-active-color="rgba(210, 34, 34, .7)")
-      swiper-item(
-        v-for="slide of slides",
-        :key="slide.title")
-        .slider-item(@click="$router.push(slide.link)")
-          .slider-title {{slide.title}}
-          img.slider-img(:src="slide.image", mode="aspectFill")
-    .news-wrap
-      news-item(
-        v-for="item of news",
-        :news="item"
-        :key="item.newsid")
-    .nomore 只给看这么多
+  swiper.slider-wrap(
+    v-if="slides.length",
+    autoPlay,
+    indicator-dots,
+    circular,
+    indicator-color="rgba(255, 255, 255, .3)",
+    indicator-active-color="rgba(210, 34, 34, .7)")
+    swiper-item(
+      v-for="slide of slides",
+      :key="slide.title")
+      .slider-item(@click="$router.push(slide.link)")
+        .slider-title {{slide.title}}
+        img.slider-img(:src="slide.image", mode="aspectFill")
+  .news-wrap
+    news-item(
+      v-for="item of news",
+      :news="item"
+      :key="item.newsid")
+  .nomore 只给看这么多
 </template>
 
 <script>
 import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
 import { Swiper, Slide } from 'vue-swiper-component'
-import PullTo from 'vue-pull-to'
 import newsItem from '@/components/news-item'
-
-let scrollTop = 0
 
 export default {
   components: {
     Swiper,
     SwiperItem: Slide,
-    PullTo,
     newsItem
   },
   computed: {
@@ -47,37 +40,26 @@ export default {
     ])
   },
   mounted () {
-    this.refresh()
+    this.$options.onPullDownRefresh.call(this)
   },
   activated () {
-    document.querySelector('.scroll-container').scrollTop = scrollTop
+    document.querySelector('.scroll-container').scrollTop = this.scrollTop
   },
-  onPullDownRefresh () {
-    this.refresh()
+  async onPullDownRefresh () {
+    await Promise.all([
+      this.getNewsList(true),
+      this.getSlides()
+    ])
+    wx.stopPullDownRefresh()
   },
   // onReachBottom () {
-  //   this.loadmore()
+  //   return this.getNewsList()
   // },
   methods: {
     ...mapActions([
       'getSlides',
       'getNewsList'
-    ]),
-    async refresh (loaded) {
-      await Promise.all([
-        this.getNewsList(true),
-        this.getSlides()
-      ])
-      wx.stopPullDownRefresh()
-      if (loaded) loaded()
-    },
-    // async loadmore (loaded) {
-    //   await this.getNewsList()
-    //   if (loaded) loaded()
-    // },
-    saveScrollPosition (e) {
-      scrollTop = e.srcElement.scrollTop
-    }
+    ])
   }
 }
 </script>
@@ -118,5 +100,13 @@ export default {
   text-align: center;
   font-size: 14px;
   color: #ddd;
+}
+</style>
+
+<style lang="less">
+@import url("~@/styles/index.less");
+
+.wh_show_bgcolor {
+  background-color: @primary-color;
 }
 </style>
