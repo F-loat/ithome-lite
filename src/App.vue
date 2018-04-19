@@ -37,15 +37,11 @@ export default {
   },
   methods: {
     async refresh (loaded) {
-      if (this.onPullDownRefresh) {
-        await this.onPullDownRefresh.call(this.$refs.current)
-      }
+      await this.onPullDownRefresh.call(this.$refs.current)
       loaded()
     },
     async loadmore (loaded) {
-      if (this.onReachBottom) {
-        await this.onReachBottom.call(this.$refs.current)
-      }
+      await this.onReachBottom.call(this.$refs.current)
       loaded()
     },
     saveScrollPosition (e) {
