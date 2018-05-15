@@ -1,15 +1,16 @@
 var path = require('path')
 var fs = require('fs')
-var genEntry = require('mpvue-entry')
+var getEntry = require('mpvue-entry')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var MpvuePlugin = require('webpack-mpvue-asset-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const entry = genEntry('./src/router/routes.js')
+const entry = getEntry('./src/router/routes.js')
 
 module.exports = {
   entry,
@@ -86,5 +87,8 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new MpvuePlugin()
+  ]
 };

@@ -60,7 +60,7 @@ module.exports = merge(baseWebpackConfig, {
           module.resource &&
           /\.js$/.test(module.resource) &&
           module.resource.indexOf('node_modules') >= 0
-        )
+        ) || count > 1
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
