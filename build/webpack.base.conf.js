@@ -1,6 +1,6 @@
 var path = require('path')
 var fs = require('fs')
-var getEntry = require('mpvue-entry')
+var MpvueEntry = require('mpvue-entry')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
@@ -10,7 +10,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const entry = getEntry('./src/router/routes.js')
+const entry = MpvueEntry.getEntry('./src/router/routes.js')
 
 module.exports = {
   entry,
@@ -39,7 +39,7 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [resolve('src')],
+        include: resolve('src'),
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -51,7 +51,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        include: [resolve('src'), /mpvue-entry/],
+        include: resolve('src'),
         use: [
           'babel-loader',
           {
@@ -89,6 +89,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new MpvuePlugin()
+    new MpvuePlugin(),
+    new MpvueEntry()
   ]
 };
