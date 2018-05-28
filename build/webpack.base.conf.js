@@ -1,10 +1,10 @@
-var path = require('path')
-var fs = require('fs')
-var MpvueEntry = require('mpvue-entry')
-var utils = require('./utils')
-var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
-var MpvuePlugin = require('webpack-mpvue-asset-plugin')
+const path = require('path')
+const fs = require('fs')
+const MpvuePlugin = require('webpack-mpvue-asset-plugin')
+const MpvueEntry = require('mpvue-entry')
+const utils = require('./utils')
+const config = require('../config')
+const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -18,8 +18,7 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath:
-      process.env.NODE_ENV === 'production'
+    publicPath: process.env.NODE_ENV === 'production'
         ? config.build.assetsPublicPath
         : config.dev.assetsPublicPath
   },
@@ -31,7 +30,9 @@ module.exports = {
       flyio: 'flyio/dist/npm/wx',
       wx: resolve('src/utils/wx')
     },
-    symlinks: false
+    symlinks: false,
+    aliasFields: ['mpvue', 'weapp', 'browser'],
+    mainFields: ['browser', 'module', 'main']
   },
   module: {
     rules: [
@@ -59,14 +60,13 @@ module.exports = {
             options: {
               checkMPEntry: true
             }
-          }
+          },
         ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
           name: utils.assetsPath('img/[name].[ext]')
         }
       },
@@ -82,7 +82,6 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
           name: utils.assetsPath('fonts/[name].[ext]')
         }
       }
@@ -92,4 +91,4 @@ module.exports = {
     new MpvuePlugin(),
     new MpvueEntry()
   ]
-};
+}
