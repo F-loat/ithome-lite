@@ -10,6 +10,13 @@
 * [mpvue-router-patch](https://github.com/F-loat/mpvue-router-patch) - 在 mpvue 中使用 vue-router 兼容的路由写法
 * [xmlstring2json](https://github.com/vilien/xmlstring2json) - xml字符串转换 json 格式，适用于微信小程序
 
+## 项目模板
+
+* [F-loat/mpvue-quickstart](https://github.com/F-loat/mpvue-quickstart) 使用 mpvue-entry 配置入口，支持新增页面热更新
+
+``` bash
+$ vue init F-loat/mpvue-quickstart my-project
+```
 
 ## 截图展示
 <p>
