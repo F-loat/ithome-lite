@@ -1,7 +1,7 @@
 const path = require('path')
-const fs = require('fs')
 const MpvuePlugin = require('webpack-mpvue-asset-plugin')
 const MpvueEntry = require('mpvue-entry')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
@@ -10,7 +10,10 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const entry = MpvueEntry.getEntry('./src/router/routes.js')
+const entry = MpvueEntry.getEntry({
+  pages: './src/router/routes.js',
+  app: './src/app.json',
+})
 
 module.exports = {
   entry,
@@ -89,6 +92,13 @@ module.exports = {
   },
   plugins: [
     new MpvuePlugin(),
-    new MpvueEntry()
+    new MpvueEntry(),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: path.resolve(__dirname, '../dist/static'),
+        ignore: ['.*']
+      }
+    ])
   ]
 }
