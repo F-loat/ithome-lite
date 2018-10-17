@@ -9,7 +9,7 @@
 	},
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
-	"appid": "touristappid",
+	"appid": "wxcabae563f1d7f76c",
 	"projectname": "ithome",
 	"condition": {
 		"search": {
