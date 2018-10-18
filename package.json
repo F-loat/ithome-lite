@@ -30,7 +30,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
-    "mpvue-packager": "^0.1.0",
+    "mpvue-packager": "^0.1.1",
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0"
   },
