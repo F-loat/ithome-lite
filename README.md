@@ -26,6 +26,22 @@ $ vue init F-loat/mpvue-quickstart my-project
   <img alt="圈子列表" src="./screenshots/quanzi.jpg" width="33%" />
 </p>
 
+## 运行步骤
+
+* 使用微信开发者工具打开项目目录
+
+``` bash
+安装依赖
+$ npm install
+
+编译运行
+$ npm run dev
+
+生产构建
+$ npm run build
+```
+
+* 网页版需切换至 [web-version](https://github.com/F-loat/ithome-lite/tree/web-version) 分支并重新安装依赖
 
 ## Tips
 
