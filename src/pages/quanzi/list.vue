@@ -10,6 +10,7 @@
 <script>
 import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
+import { platform } from '@/utils'
 import topicItem from '@/components/topic-item'
 
 export default {
@@ -22,25 +23,26 @@ export default {
     ])
   },
   mounted () {
-    this.refresh()
+    if (platform === 'h5') {
+      this.$options.onPullDownRefresh.call(this)
+    } else {
+      wx.startPullDownRefresh()
+    }
   },
-  onPullDownRefresh () {
-    this.refresh()
+  activated () {
+    document.querySelector('.scroll-container').scrollTop = this.scrollTop
+  },
+  async onPullDownRefresh () {
+    await this.getTopics(true)
+    wx.stopPullDownRefresh()
   },
   onReachBottom () {
-    this.loadmore()
+    return this.getTopics()
   },
   methods: {
     ...mapActions([
       'getTopics'
-    ]),
-    async refresh () {
-      await this.getTopics(true)
-      wx.stopPullDownRefresh()
-    },
-    loadmore () {
-      this.getTopics()
-    }
+    ])
   }
 }
 </script>

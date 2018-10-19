@@ -17,6 +17,7 @@
 <script>
 import xml2json from 'xmlstring2json'
 import api from '@/utils/api'
+import { platform } from '@/utils'
 import newsItem from '@/components/news-item'
 
 const dataArr = []
@@ -83,16 +84,28 @@ export default {
         }
       })
     }
+  },
+  watch: {
+    async $route (to, from) {
+      if (to.name !== 'NewsDetail') return
+      this.id = this.$route.query.id
+      this.title = this.$route.query.title
+      await Promise.all([
+        this.getNews(),
+        this.getRelatedNews()
+      ])
+      if (platform === 'h5') {
+        document.querySelector('.container').scrollTop = 0
+      }
+    }
   }
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import url("~@/styles/index.less");
 
 .header {
-  display: flex;
-  flex-direction: column;
   width: 100%;
   color: #fff;
   background-color: @primary-color;
@@ -105,7 +118,7 @@ export default {
 .auth-info {
   font-size: 12px;
   margin-top: 10px;
-  align-self: flex-end;
+  text-align: right;
 }
 .news-content {
   width: 100%;

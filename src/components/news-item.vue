@@ -6,8 +6,8 @@
   .news-text
     .news-title {{news.title}}
     .news-info
-      text {{news.postdate}}
-      text(v-if="news.commentcount") {{news.commentcount}}评
+      span {{news.postdate}}
+      span(v-if="news.commentcount") {{news.commentcount}}评
 </template>
 
 <script>

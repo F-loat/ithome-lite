@@ -1,7 +1,8 @@
 <template lang="pug">
 .container
   swiper.slider-wrap(
-    autoplay,
+    v-if="slides.length",
+    autoPlay,
     indicator-dots,
     circular,
     indicator-color="rgba(255, 255, 255, .3)",
@@ -23,6 +24,7 @@
 <script>
 import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
+import { platform } from '@/utils'
 import newsItem from '@/components/news-item'
 
 export default {
@@ -36,29 +38,30 @@ export default {
     ])
   },
   mounted () {
-    this.refresh()
+    if (platform === 'h5') {
+      this.$options.onPullDownRefresh.call(this)
+    } else {
+      wx.startPullDownRefresh()
+    }
   },
-  onPullDownRefresh () {
-    this.refresh()
+  activated () {
+    document.querySelector('.scroll-container').scrollTop = this.scrollTop
+  },
+  async onPullDownRefresh () {
+    await Promise.all([
+      this.getNewsList(true),
+      this.getSlides()
+    ])
+    wx.stopPullDownRefresh()
   },
   // onReachBottom () {
-  //   this.loadmore()
+  //   return this.getNewsList()
   // },
   methods: {
     ...mapActions([
       'getSlides',
       'getNewsList'
-    ]),
-    async refresh () {
-      await Promise.all([
-        this.getNewsList(true),
-        this.getSlides()
-      ])
-      wx.stopPullDownRefresh()
-    }
-    // loadmore () {
-    //   this.getNewsList()
-    // }
+    ])
   }
 }
 </script>
@@ -86,7 +89,7 @@ export default {
 }
 .slider-img {
   width: 100%;
-  height: 100%;
+  height: 200px;
 }
 
 .news-wrap {
@@ -99,5 +102,13 @@ export default {
   text-align: center;
   font-size: 14px;
   color: #ddd;
+}
+</style>
+
+<style lang="less">
+@import url("~@/styles/index.less");
+
+.wh_show_bgcolor {
+  background-color: @primary-color;
 }
 </style>

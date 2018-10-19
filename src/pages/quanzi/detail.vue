@@ -37,7 +37,7 @@ export default {
     this.getTopic()
   },
   onReachBottom () {
-    this.getComments()
+    return this.getComments()
   },
   methods: {
     async getTopic () {
@@ -51,7 +51,7 @@ export default {
         vc: query.vc
       }, topic)
     },
-    async getComments () {
+    async getComments (loaded) {
       if (this.loading) return
       this.loading = true
       const { query } = this.$route
@@ -62,12 +62,13 @@ export default {
       const formatedComments = newComments.map(formatComment)
       this.topic.reply = this.topic.reply.concat(formatedComments)
       this.loading = false
+      if (loaded) loaded()
     }
   }
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .topic-title {
   width: 100%;
   padding: 10px;
@@ -76,9 +77,9 @@ export default {
 }
 .topic-num {
   font-size: 12px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  float: right;
+  margin-top: -40px;
+  margin-right: 10px;
 }
 .topic-info {
   display: flex;

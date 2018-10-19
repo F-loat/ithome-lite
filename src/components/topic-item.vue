@@ -77,3 +77,9 @@ export default {
   margin-right: 4px;
 }
 </style>
+
+<style lang="less" scoped>
+.topic-item {
+  display: block;
+}
+</style>

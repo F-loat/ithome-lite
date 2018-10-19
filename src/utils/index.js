@@ -3,6 +3,8 @@ function formatNumber (n) {
   return str[1] ? str : `0${str}`
 }
 
+export const platform = window ? 'h5' : 'mp'
+
 export function formatTime (date) {
   date = new Date(date)
   const year = date.getFullYear()
