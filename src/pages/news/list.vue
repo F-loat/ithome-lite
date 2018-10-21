@@ -109,6 +109,6 @@ export default {
 @import url("~@/styles/index.less");
 
 .wh_show_bgcolor {
-  background-color: @primary-color;
+  background-color: @primary-color !important;
 }
 </style>
