@@ -11,6 +11,7 @@
 * [xmlstring2json](https://github.com/vilien/xmlstring2json) - xml字符串转换 json 格式，适用于微信小程序
 * [mpvue-packager](https://github.com/F-loat/mpvue-packager) - 打包工具
 
+
 ## 项目模板
 
 * [F-loat/mpvue-quickstart](https://github.com/F-loat/mpvue-quickstart) 使用 mpvue-entry 配置入口，支持新增页面热更新
@@ -19,35 +20,36 @@
 $ vue init F-loat/mpvue-quickstart my-project
 ```
 
+
 ## 截图展示
+
 <p>
   <img alt="新闻列表" src="./screenshots/news.jpg" width="33%" />
   <img alt="新闻详情" src="./screenshots/detail.jpg" width="33%" />
   <img alt="圈子列表" src="./screenshots/quanzi.jpg" width="33%" />
 </p>
 
+
 ## 运行步骤
+
+* 安装依赖 `$ npm install`
+
+* 编译运行
+  - 小程序版 `$ npm run dev`
+  - 网页版 `$ npm run dev:h5`
+
+* 生产构建
+  - 小程序版 `$ npm run build`
+  - 网页版 `$ npm run build:h5`
 
 * 使用微信开发者工具打开项目目录
 
-``` bash
-安装依赖
-$ npm install
-
-编译运行
-$ npm run dev
-
-生产构建
-$ npm run build
-```
-
-* 网页版需切换至 [web-version](https://github.com/F-loat/ithome-lite/tree/web-version) 分支并重新安装依赖
 
 ## Tips
 
 * flyio 使用方法
 
-具体内容参见 [微信小程序中使用flyio](https://wendux.github.io/dist/#/doc/flyio/wx)，这里提示下小程序中需要引入的是 `flyio/dist/npm/wx.js` 这个文件，可以配置下 webpack 的 alias 方便调用
+具体内容参见 [微信小程序中使用flyio](https://wendux.github.io/dist/#/doc/flyio/wx)，这里提示下小程序中需要引入的是 `flyio/dist/npm/wx.js`，而网页中则需要引用 `flyio/dist/npm/fly.js`，可以通过配置 webpack 的 alias 方便调用
 
 ``` js
 alias: {
