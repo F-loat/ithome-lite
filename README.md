@@ -35,14 +35,16 @@ $ vue init F-loat/mpvue-quickstart my-project
 * 安装依赖 `$ npm install`
 
 * 编译运行
-  - 小程序版 `$ npm run dev`
-  - 网页版 `$ npm run dev:h5`
+  - 小程序 `$ npm run dev`
+  - 网页 `$ npm run dev:h5`
 
 * 生产构建
-  - 小程序版 `$ npm run build`
-  - 网页版 `$ npm run build:h5`
+  - 小程序 `$ npm run build`
+  - 网页 `$ npm run build:h5`
 
-* 使用微信开发者工具打开项目目录
+* 查看调试
+  - 小程序 使用微信开发者工具打开项目目录
+  - 网页 通过浏览器访问 `localhost:8080`
 
 
 ## Tips
