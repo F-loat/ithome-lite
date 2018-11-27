@@ -8,8 +8,8 @@
     "start": "npm run dev",
     "dev": "mpvue dev --pages src/router/routes.js",
     "build": "mpvue build --pages src/router/routes.js",
-    "dev:h5": "mpvue dev --mode h5 --config webpack.conf.h5.js",
-    "build:h5": "mpvue build --mode h5 --config webpack.conf.h5.js",
+    "dev:h5": "mpvue dev --mode h5",
+    "build:h5": "mpvue build --mode h5",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
