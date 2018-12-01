@@ -77,7 +77,7 @@ export default {
         return {
           title: news.newstitle,
           image: news.img,
-          link: `/pages/news/detail?id=${news.newsid}&title=${news.newstitle}`,
+          link: `/pages/detail/news?id=${news.newsid}&title=${news.newstitle}`,
           postdate: news.postdate
         }
       })

@@ -1,7 +1,7 @@
 module.exports = [
   {
     alias: '/',
-    path: '/pages/news/list',
+    path: '/pages/tab/news',
     name: 'NewsList',
     meta: {
       nav: true
@@ -11,8 +11,9 @@ module.exports = [
     }
   },
   {
-    path: '/pages/news/detail',
+    path: '/pages/detail/news',
     name: 'NewsDetail',
+    root: '/pages/detail',
     meta: {
       nav: false
     },
@@ -32,8 +33,9 @@ module.exports = [
     }
   },
   {
-    path: '/pages/quanzi/detail',
+    path: '/pages/detail/quanzi',
     name: 'QuanziDetail',
+    root: '/pages/detail',
     meta: {
       nav: false
     },

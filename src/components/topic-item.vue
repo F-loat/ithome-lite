@@ -28,7 +28,7 @@ export default {
     turn () {
       const { id, title, author, viewcount } = this.topic
       this.$router.push({
-        path: '/pages/quanzi/detail',
+        path: '/pages/detail/quanzi',
         query: {
           id,
           title,

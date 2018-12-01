@@ -1,6 +1,6 @@
 {
   "pages": [
-    "^pages/news/list"
+    "^pages/tab/news"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,13 +17,13 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/news/list",
+        "pagePath": "pages/tab/news",
         "text": "资讯",
         "iconPath": "static/assets/news.png",
         "selectedIconPath": "static/assets/news-active.png"
       },
       {
-        "pagePath": "pages/quanzi/list",
+        "pagePath": "pages/tab/quanzi",
         "text": "圈子",
         "iconPath": "static/assets/quanzi.png",
         "selectedIconPath": "static/assets/quanzi-active.png"

@@ -1,11 +1,11 @@
-const pagesNewsList = () => import('@/pages/news/list')
-const pagesNewsDetail = () => import('@/pages/news/detail')
-const pagesQuanziList = () => import('@/pages/quanzi/list')
-const pagesQuanziDetail = () => import('@/pages/quanzi/detail')
+const pagesTabNews = () => import('@/pages/tab/news')
+const pagesDetailNews = () => import('@/pages/detail/news')
+const pagesTabQuanzi = () => import('@/pages/tab/quanzi')
+const pagesDetailQuanzi = () => import('@/pages/detail/quanzi')
 
 export {
-  pagesNewsList,
-  pagesNewsDetail,
-  pagesQuanziList,
-  pagesQuanziDetail
+  pagesTabNews,
+  pagesDetailNews,
+  pagesTabQuanzi,
+  pagesDetailQuanzi
 }

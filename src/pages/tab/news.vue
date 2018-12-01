@@ -54,9 +54,6 @@ export default {
     ])
     wx.stopPullDownRefresh()
   },
-  // onReachBottom () {
-  //   return this.getNewsList()
-  // },
   methods: {
     ...mapActions([
       'getSlides',

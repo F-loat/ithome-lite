@@ -28,7 +28,7 @@ export function formatSlideList (slide) {
   return {
     title,
     image,
-    link: `/pages/news/detail?id=${link}&title=${title}`
+    link: `/pages/detail/news?id=${link}&title=${title}`
   }
 }
 
@@ -41,7 +41,7 @@ export function formatNewsList (news) {
     commentcount,
     lapinid,
     image,
-    link: `/pages/news/detail?id=${newsid}&title=${title}`
+    link: `/pages/detail/news?id=${newsid}&title=${title}`
   }
 }
 
