@@ -21,17 +21,7 @@ module.exports = [
     }
   },
   {
-    path: '/pages/news/comment',
-    name: 'NewsComment',
-    meta: {
-      nav: false
-    },
-    config: {
-      navigationBarTitleText: '评论列表'
-    }
-  },
-  {
-    path: '/pages/quanzi/list',
+    path: '/pages/tab/quanzi',
     name: 'QuanziList',
     meta: {
       nav: true

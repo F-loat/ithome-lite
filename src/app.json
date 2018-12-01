@@ -1,10 +1,6 @@
 {
   "pages": [
-    "pages/news/list",
-    "pages/news/detail",
-    "pages/news/comment",
-    "pages/quanzi/list",
-    "pages/quanzi/detail"
+    "^pages/news/list"
   ],
   "window": {
     "backgroundTextStyle": "light",
