@@ -13,6 +13,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "flyio": "^0.6.0",
     "minireset.css": "0.0.3",
     "mpvue": "^1.0.13",

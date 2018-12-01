@@ -9,11 +9,12 @@ const config = process.env.MODE === 'mp' ? {
     }
   }
 } : {
-  entry: './src/main.h5.js',
+  entry: ['babel-polyfill', './src/main.h5.js'],
   resolve: {
     alias: {
       flyio: 'flyio/dist/npm/fly',
-      wx: path.join(__dirname, 'src/utils/wx')
+      wx: path.join(__dirname, 'src/utils/wx'),
+      xmlstring2json: 'xmlstring2json/dist/xml2json.min.js'
     }
   },
   devServer: {
