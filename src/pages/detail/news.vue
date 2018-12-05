@@ -21,6 +21,9 @@ import newsItem from '@/components/news-item'
 const dataArr = []
 
 export default {
+  config: {
+    navigationBarTitleText: '文章详情'
+  },
   components: {
     newsItem
   },

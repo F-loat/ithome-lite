@@ -14,6 +14,10 @@ import { platform } from '@/utils'
 import topicItem from '@/components/topic-item'
 
 export default {
+  config: {
+    navigationBarTitleText: '圈子',
+    enablePullDownRefresh: true
+  },
   components: {
     topicItem
   },

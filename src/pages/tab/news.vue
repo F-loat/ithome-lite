@@ -28,6 +28,9 @@ import { platform } from '@/utils'
 import newsItem from '@/components/news-item'
 
 export default {
+  config: {
+    enablePullDownRefresh: true
+  },
   components: {
     newsItem
   },

@@ -1,19 +1,29 @@
 const path = require('path')
 
+const resolve = dir => path.join(__dirname, dir)
+
 const config = process.env.MODE === 'mp' ? {
   resolve: {
     alias: {
       vue: 'mpvue',
       flyio: 'flyio/dist/npm/wx',
-      wx: path.join(__dirname, 'src/utils/wx')
+      wx: resolve('src/utils/wx')
     }
+  },
+  module: {
+    rules: [{
+      test: /\.vue$/,
+      loader: 'mpvue-config-loader',
+      exclude: [resolve('src/components')],
+      options: {}
+    }]
   }
 } : {
   entry: ['babel-polyfill', './src/main.h5.js'],
   resolve: {
     alias: {
       flyio: 'flyio/dist/npm/fly',
-      wx: path.join(__dirname, 'src/utils/wx'),
+      wx: resolve('src/utils/wx'),
       xmlstring2json: 'xmlstring2json/dist/xml2json.min.js'
     }
   },

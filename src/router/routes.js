@@ -5,9 +5,6 @@ module.exports = [
     name: 'NewsList',
     meta: {
       nav: true
-    },
-    config: {
-      enablePullDownRefresh: true
     }
   },
   {
@@ -16,9 +13,6 @@ module.exports = [
     root: '/pages/detail',
     meta: {
       nav: false
-    },
-    config: {
-      navigationBarTitleText: '文章详情'
     }
   },
   {
@@ -26,10 +20,6 @@ module.exports = [
     name: 'QuanziList',
     meta: {
       nav: true
-    },
-    config: {
-      navigationBarTitleText: '圈子',
-      enablePullDownRefresh: true
     }
   },
   {
@@ -38,9 +28,6 @@ module.exports = [
     root: '/pages/detail',
     meta: {
       nav: false
-    },
-    config: {
-      navigationBarTitleText: '圈子详情'
     }
   }
 ]

@@ -23,6 +23,9 @@ import commentItem from '@/components/comment-item'
 import { formatComment } from '@/utils'
 
 export default {
+  config: {
+    navigationBarTitleText: '圈子详情'
+  },
   components: {
     commentItem
   },

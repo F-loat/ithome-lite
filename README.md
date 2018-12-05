@@ -10,6 +10,7 @@
 * [mpvue-router-patch](https://github.com/F-loat/mpvue-router-patch) - 在 mpvue 中使用 vue-router 兼容的路由写法
 * [xmlstring2json](https://github.com/vilien/xmlstring2json) - xml字符串转换 json 格式，适用于微信小程序
 * [mpvue-packager](https://github.com/F-loat/mpvue-packager) - 打包工具
+* [mpvue-config-loader](https://github.com/F-loat/mpvue-config-loader) - 单文件页面配置
 
 
 ## 项目模板
