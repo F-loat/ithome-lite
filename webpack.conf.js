@@ -14,8 +14,7 @@ const config = process.env.MODE === 'mp' ? {
     rules: [{
       test: /\.vue$/,
       loader: 'mpvue-config-loader',
-      exclude: [resolve('src/components')],
-      options: {}
+      exclude: [resolve('src/components')]
     }]
   }
 } : {
