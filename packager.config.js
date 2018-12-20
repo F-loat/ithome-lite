@@ -5,7 +5,6 @@ const resolve = dir => path.join(__dirname, dir)
 const config = process.env.MODE === 'mp' ? {
   resolve: {
     alias: {
-      vue: 'mpvue',
       flyio: 'flyio/dist/npm/wx',
       wx: resolve('src/utils/wx')
     }
