@@ -1,0 +1,56 @@
+{
+	"pages": [
+    {
+      "path": "pages/tab/news",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    },
+		{
+      "path": "pages/detail/news",
+      "style": {
+        "navigationBarTitleText": "文章详情"
+      }
+    },
+		{
+      "path": "pages/tab/quanzi",
+      "style": {
+        "navigationBarTitleText": "圈子",
+        "enablePullDownRefresh": true
+      }
+    },
+		{
+      "path": "pages/detail/quanzi",
+      "style": {
+        "navigationBarTitleText": "圈子详情"
+      }
+    }
+	],
+	"globalStyle": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#d22222",
+    "backgroundColorTop": "#d22222",
+    "navigationBarBackgroundColor": "#d22222",
+    "navigationBarTitleText": "IT之家Lite"
+	},
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#d22222",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/tab/news",
+        "text": "资讯",
+        "iconPath": "static/assets/news.png",
+        "selectedIconPath": "static/assets/news-active.png"
+      },
+      {
+        "pagePath": "pages/tab/quanzi",
+        "text": "圈子",
+        "iconPath": "static/assets/quanzi.png",
+        "selectedIconPath": "static/assets/quanzi-active.png"
+      }
+    ]
+  }
+}

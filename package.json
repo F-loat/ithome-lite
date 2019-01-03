@@ -5,46 +5,44 @@
   "author": "F-loat <chaimaoyuan@foxmail.com>",
   "private": true,
   "scripts": {
-    "start": "npm run dev",
-    "dev": "mpvue dev",
-    "build": "mpvue build",
-    "dev:h5": "mpvue dev --mode h5",
-    "build:h5": "mpvue build --mode h5",
-    "lint": "eslint --ext .js,.vue src"
+    "serve": "npm run dev:h5",
+    "build": "npm run build:h5",
+    "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build",
+    "build:mp-alipay": "cross-env NODE_ENV=production UNI_PLATFORM=mp-alipay vue-cli-service uni-build",
+    "build:mp-baidu": "cross-env NODE_ENV=production UNI_PLATFORM=mp-baidu vue-cli-service uni-build",
+    "build:mp-weixin": "cross-env NODE_ENV=production UNI_PLATFORM=mp-weixin vue-cli-service uni-build",
+    "dev:h5": "cross-env NODE_ENV=development UNI_PLATFORM=h5 vue-cli-service uni-serve",
+    "dev:mp-alipay": "cross-env NODE_ENV=development UNI_PLATFORM=mp-alipay vue-cli-service uni-build --watch",
+    "dev:mp-baidu": "cross-env NODE_ENV=development UNI_PLATFORM=mp-baidu vue-cli-service uni-build --watch",
+    "dev:mp-weixin": "cross-env NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "flyio": "^0.6.7",
-    "minireset.css": "0.0.3",
-    "mpvue": "^1.0.18",
-    "mpvue-router-patch": "^0.2.1",
-    "vue": "^2.5.20",
-    "vue-pull-to": "^0.1.6",
-    "vue-router": "^3.0.1",
-    "vue-swiper-component": "^2.1.3",
-    "vue2-toast": "^2.0.2",
+    "@dcloudio/uni-h5": "*",
+    "@dcloudio/uni-mp-alipay": "*",
+    "@dcloudio/uni-mp-baidu": "*",
+    "@dcloudio/uni-mp-weixin": "*",
+    "flyio": "^0.6.2",
+    "vue": "^2.5.21",
     "vuex": "^3.0.1",
     "xmlstring2json": "^0.1.9"
   },
   "devDependencies": {
-    "less": "^3.8.1",
+    "@dcloudio/uni-cli-shared": "*",
+    "@dcloudio/vue-cli-plugin-uni": "latest",
+    "@dcloudio/webpack-uni-mp-loader": "*",
+    "@dcloudio/webpack-uni-pages-loader": "*",
+    "@vue/cli-plugin-babel": "3.1.1",
+    "@vue/cli-service": "^3.2.0",
+    "babel-plugin-import": "^1.11.0",
+    "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "mpvue-config-loader": "^0.1.2",
-    "mpvue-packager": "^0.2.3",
-    "mpvue-packager-eslint-standard": "^0.2.3",
-    "mpvue-packager-h5-plugin": "^0.2.3",
-    "mpvue-packager-mp-plugin": "^0.2.3",
-    "mpvue-template-compiler": "^1.0.18",
     "pug": "^2.0.3",
-    "pug-loader": "^2.4.0",
-    "vue-template-compiler": "^2.5.20"
-  },
-  "entryOptions": {
-    "config": "src/config.js"
+    "pug-plain-loader": "^1.0.0",
+    "vue-template-compiler": "^2.5.21"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    "last 3 versions",
+    "Android >= 4.4",
+    "ios >= 8"
   ]
 }

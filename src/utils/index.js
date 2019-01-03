@@ -3,7 +3,7 @@ function formatNumber (n) {
   return str[1] ? str : `0${str}`
 }
 
-export const platform = window ? 'h5' : 'mp'
+export const platform = process.env.UNI_PLATFORM
 
 export function formatTime (date) {
   date = new Date(date)

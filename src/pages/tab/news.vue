@@ -10,7 +10,7 @@
     swiper-item(
       v-for="(slide, index) of slides",
       :key="index")
-      .slider-item(@click="$router.push(slide.link)")
+      .slider-item(@click="() => turn(slide.link)")
         .slider-title {{slide.title}}
         img.slider-img(:src="slide.image", mode="aspectFill")
   .news-wrap
@@ -22,15 +22,11 @@
 </template>
 
 <script>
-import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
 import { platform } from '@/utils'
 import newsItem from '@/components/news-item'
 
 export default {
-  config: {
-    enablePullDownRefresh: true
-  },
   components: {
     newsItem
   },
@@ -41,32 +37,28 @@ export default {
     ])
   },
   mounted () {
-    if (platform === 'h5') {
-      this.$options.onPullDownRefresh.call(this)
-    } else {
-      wx.startPullDownRefresh()
-    }
-  },
-  activated () {
-    document.querySelector('.scroll-container').scrollTop = this.scrollTop
+    uni.startPullDownRefresh()
   },
   async onPullDownRefresh () {
     await Promise.all([
       this.getNewsList(true),
       this.getSlides()
     ])
-    wx.stopPullDownRefresh()
+    uni.stopPullDownRefresh()
   },
   methods: {
     ...mapActions([
       'getSlides',
       'getNewsList'
-    ])
+    ]),
+    turn(url) {
+      uni.navigateTo({ url })
+    }
   }
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .slider-wrap {
   width: 100%;
   height: 200px;

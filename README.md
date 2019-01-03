@@ -1,6 +1,6 @@
 # ithome-lite
 
-> IT之家第三方小程序版客户端
+> IT之家第三方小程序版客户端（使用 uni-app 开发，多端兼容）
 
 ## 截图展示
 
@@ -12,10 +12,10 @@
 
 ## 项目模板
 
-* [F-loat/mpvue-quickstart](https://github.com/F-loat/mpvue-quickstart) - 更优雅的 mpvue 起手式
+> [uni-app](https://uniapp.dcloud.io) 是一个使用 [Vue.js](https://vuejs.org) 开发跨平台应用的前端框架，开发者编写一套代码，可编译到iOS、Android、H5、小程序等多个平台。
 
 ``` bash
-$ vue init F-loat/mpvue-quickstart my-project
+$ vue create -p dcloudio/uni-preset-vue my-project
 ```
 
 ## 运行步骤
@@ -23,25 +23,16 @@ $ vue init F-loat/mpvue-quickstart my-project
 * 安装依赖 `$ npm install`
 
 * 编译运行
-  - 小程序 `$ npm run dev`
   - 网页 `$ npm run dev:h5`
+  - 小程序 `$ npm run dev:mp-weixin`
 
 * 生产构建
-  - 小程序 `$ npm run build`
   - 网页 `$ npm run build:h5`
+  - 小程序 `$ npm run build:mp-weixin`
 
 * 查看调试
-  - 小程序 使用微信开发者工具打开项目目录
+  - 小程序 使用微信开发者工具打开 `dist/dev/mp-weixin`
   - 网页 通过浏览器访问 `localhost:8080`
-
-## 相关依赖
-
-* [flyio](https://github.com/wendux/fly) - 同时支持浏览器、小程序、Node、Weex 及快应用的基于 Promise 的跨平台请求库
-* [mpvue-packager](https://github.com/F-loat/mpvue-packager) - 开箱即用的 mpvue 打包工具
-* [mpvue-entry](https://github.com/F-loat/mpvue-entry) - 统一构建入口，无需冗余的 main.js 文件
-* [mpvue-config-loader](https://github.com/F-loat/mpvue-config-loader) - 单文件页面配置，无需单独的 main.json 文件
-* [mpvue-router-patch](https://github.com/F-loat/mpvue-router-patch) - 在 mpvue 中使用 vue-router 兼容的路由写法
-* [xmlstring2json](https://github.com/vilien/xmlstring2json) - xml 字符串转换 json 格式，适用于微信小程序
 
 ## 部分 api 列表
 

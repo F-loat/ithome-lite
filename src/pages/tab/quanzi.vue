@@ -8,16 +8,11 @@
 </template>
 
 <script>
-import wx from 'wx'
 import { mapState, mapActions } from 'vuex'
 import { platform } from '@/utils'
 import topicItem from '@/components/topic-item'
 
 export default {
-  config: {
-    navigationBarTitleText: '圈子',
-    enablePullDownRefresh: true
-  },
   components: {
     topicItem
   },
@@ -27,21 +22,14 @@ export default {
     ])
   },
   mounted () {
-    if (platform === 'h5') {
-      this.$options.onPullDownRefresh.call(this)
-    } else {
-      wx.startPullDownRefresh()
-    }
-  },
-  activated () {
-    document.querySelector('.scroll-container').scrollTop = this.scrollTop
+    uni.startPullDownRefresh()
   },
   async onPullDownRefresh () {
     await this.getTopics(true)
-    wx.stopPullDownRefresh()
+    uni.stopPullDownRefresh()
   },
   onReachBottom () {
-    return this.getTopics()
+    this.getTopics()
   },
   methods: {
     ...mapActions([

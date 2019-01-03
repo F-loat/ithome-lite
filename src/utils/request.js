@@ -1,21 +1,20 @@
-import wx from 'wx'
 import Fly from 'flyio'
 
 const request = new Fly()
 
 request.interceptors.request.use((request) => {
-  wx.showNavigationBarLoading()
+  uni.showNavigationBarLoading()
   return request
 })
 
 request.interceptors.response.use(
   (response, promise) => {
-    wx.hideNavigationBarLoading()
+    uni.hideNavigationBarLoading()
     return promise.resolve(response.data)
   },
   (err, promise) => {
-    wx.hideNavigationBarLoading()
-    wx.showToast({
+    uni.hideNavigationBarLoading()
+    uni.showToast({
       title: err.message,
       icon: 'none'
     })

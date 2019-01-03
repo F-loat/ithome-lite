@@ -23,9 +23,6 @@ import commentItem from '@/components/comment-item'
 import { formatComment } from '@/utils'
 
 export default {
-  config: {
-    navigationBarTitleText: '圈子详情'
-  },
   components: {
     commentItem
   },
@@ -40,7 +37,7 @@ export default {
     this.getTopic()
   },
   onReachBottom () {
-    return this.getComments()
+    this.getComments()
   },
   methods: {
     async getTopic () {
@@ -71,7 +68,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .topic-title {
   width: 100%;
   padding: 10px;

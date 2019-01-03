@@ -18,12 +18,7 @@ import api from '@/utils/api'
 import { platform } from '@/utils'
 import newsItem from '@/components/news-item'
 
-const dataArr = []
-
 export default {
-  config: {
-    navigationBarTitleText: '文章详情'
-  },
   components: {
     newsItem
   },
@@ -36,28 +31,17 @@ export default {
     }
   },
   async mounted () {
-    Object.assign(this.$data, this.$options.data())
     this.id = this.$route.query.id
     this.title = this.$route.query.title
     await Promise.all([
       this.getNews(),
       this.getRelatedNews()
     ])
-    dataArr.push({ ...this.$data })
-  },
-  onUnload () {
-    dataArr.pop()
-    const dataNum = dataArr.length
-    if (!dataNum) return
-    Object.assign(this.$data, dataArr[dataNum - 1])
   },
   methods: {
     turnToComment () {
-      this.$router.push({
-        path: '/pages/news/comment',
-        query: {
-          id: this.id
-        }
+      uni.navigateTo({
+        url: `/pages/news/comment?id=${this.id}`
       })
     },
     async getNews () {
@@ -85,25 +69,11 @@ export default {
         }
       })
     }
-  },
-  watch: {
-    async $route (to, from) {
-      if (to.name !== 'NewsDetail') return
-      this.id = this.$route.query.id
-      this.title = this.$route.query.title
-      await Promise.all([
-        this.getNews(),
-        this.getRelatedNews()
-      ])
-      if (platform === 'h5') {
-        document.querySelector('.container').scrollTop = 0
-      }
-    }
   }
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import url("~@/styles/index.less");
 
 .header {

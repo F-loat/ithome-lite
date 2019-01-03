@@ -27,14 +27,8 @@ export default {
   methods: {
     turn () {
       const { id, title, author, viewcount } = this.topic
-      this.$router.push({
-        path: '/pages/detail/quanzi',
-        query: {
-          id,
-          title,
-          author,
-          vc: viewcount
-        }
+      uni.navigateTo({
+        url: `/pages/detail/quanzi?id=${id}&title=${title}&author=${author}&vc=${viewcount}`
       })
     }
   }

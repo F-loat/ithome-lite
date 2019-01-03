@@ -23,7 +23,7 @@ export default {
   methods: {
     turn () {
       const { link } = this.news
-      this.$router.push(link)
+      uni.navigateTo({ url: link })
     }
   }
 }
