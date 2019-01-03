@@ -1,6 +1,6 @@
 # ithome-lite
 
-> IT之家第三方小程序版客户端
+> IT之家第三方小程序版客户端（使用 mpvue 开发，兼容 Web）
 
 ## 截图展示
 
@@ -55,3 +55,7 @@ $ vue init F-loat/mpvue-quickstart my-project
 * 圈子列表 https://apiquan.ithome.com/api/post?categoryid=0&type=0&orderTime=&visistCount&pageLength
 * 圈子详情 https://apiquan.ithome.com/api/post/236076
 * 圈子评论 https://apiquan.ithome.com/api/reply?postid=236076&replyidlessthan=3241294
+
+## 其他
+
+* [uni-app 版](https://github.com/F-loat/ithome-lite/tree/uni-app)
