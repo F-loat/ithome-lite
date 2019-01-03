@@ -20,15 +20,15 @@ $ vue create -p dcloudio/uni-preset-vue my-project
 
 ## 运行步骤
 
-* 安装依赖 `$ npm install`
+* 安装依赖 `$ yarn`
 
 * 编译运行
-  - 网页 `$ npm run dev:h5`
-  - 小程序 `$ npm run dev:mp-weixin`
+  - 网页 `$ yarn dev:h5`
+  - 小程序 `$ yarn dev:mp-weixin`
 
 * 生产构建
-  - 网页 `$ npm run build:h5`
-  - 小程序 `$ npm run build:mp-weixin`
+  - 网页 `$ yarn build:h5`
+  - 小程序 `$ yarn build:mp-weixin`
 
 * 查看调试
   - 小程序 使用微信开发者工具打开 `dist/dev/mp-weixin`
