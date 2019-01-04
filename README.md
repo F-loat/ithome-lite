@@ -5,9 +5,9 @@
 ## 截图展示
 
 <p>
-  <img alt="新闻列表" src="./public/news.jpg" width="33%" />
-  <img alt="新闻详情" src="./public/detail.jpg" width="33%" />
-  <img alt="圈子列表" src="./public/quanzi.jpg" width="33%" />
+  <img alt="新闻列表" src="./screenshots/news.jpg" width="33%" />
+  <img alt="新闻详情" src="./screenshots/detail.jpg" width="33%" />
+  <img alt="圈子列表" src="./screenshots/quanzi.jpg" width="33%" />
 </p>
 
 ## 项目模板
