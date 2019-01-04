@@ -23,12 +23,12 @@ $ vue create -p dcloudio/uni-preset-vue my-project
 * 安装依赖 `$ yarn`
 
 * 编译运行
+  - 小程序 `$ yarn dev`
   - 网页 `$ yarn dev:h5`
-  - 小程序 `$ yarn dev:mp-weixin`
 
 * 生产构建
+  - 小程序 `$ yarn build`
   - 网页 `$ yarn build:h5`
-  - 小程序 `$ yarn build:mp-weixin`
 
 * 查看调试
   - 小程序 使用微信开发者工具打开 `dist/dev/mp-weixin`
@@ -46,3 +46,7 @@ $ vue create -p dcloudio/uni-preset-vue my-project
 * 圈子列表 https://apiquan.ithome.com/api/post?categoryid=0&type=0&orderTime=&visistCount&pageLength
 * 圈子详情 https://apiquan.ithome.com/api/post/236076
 * 圈子评论 https://apiquan.ithome.com/api/reply?postid=236076&replyidlessthan=3241294
+
+## 其他
+
+* [uni-app 版](https://github.com/F-loat/ithome-lite/tree/uni-app)
