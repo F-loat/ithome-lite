@@ -107,7 +107,7 @@ export default {
 </style>
 
 <style lang="less">
-@import url("~@/styles/index.less");
+@import (reference) "~@/styles/index.less";
 
 .wh_show_bgcolor {
   background-color: @primary-color !important;

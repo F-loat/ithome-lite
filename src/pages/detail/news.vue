@@ -104,7 +104,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url("~@/styles/index.less");
+@import (reference) "~@/styles/index.less";
 
 .header {
   width: 100%;

@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url("~@/styles/index.less");
+@import (reference) "~@/styles/index.less";
 
 #app {
   max-width: 540px;
