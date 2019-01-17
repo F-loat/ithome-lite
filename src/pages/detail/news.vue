@@ -15,7 +15,6 @@
 <script>
 import xml2json from 'xmlstring2json'
 import api from '@/utils/api'
-import { platform } from '@/utils'
 import newsItem from '@/components/news-item'
 
 export default {

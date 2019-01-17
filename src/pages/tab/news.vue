@@ -23,7 +23,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { platform } from '@/utils'
 import newsItem from '@/components/news-item'
 
 export default {
@@ -51,7 +50,7 @@ export default {
       'getSlides',
       'getNewsList'
     ]),
-    turn(url) {
+    turn (url) {
       uni.navigateTo({ url })
     }
   }

@@ -9,7 +9,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { platform } from '@/utils'
 import topicItem from '@/components/topic-item'
 
 export default {
